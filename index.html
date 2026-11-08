@@ -1,0 +1,5657 @@
+<!DOCTYPE html>
+
+<html lang="en" class="scroll-smooth">
+
+
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+
+  <meta name="description"
+
+    content="Executive Business Dining Etiquette Guide & Interactive Business Lunch Simulator for Engineering and Technical Sales Professionals. Grounded in Carreño's Code (1853) and modern corporate negotiation standards.">
+
+  <meta name="author" content="Andre Velazco | SIE 415-515 Technical Sales & Marketing">
+
+  <title>Executive Dining Protocol & Business Lunch Simulator | SIE 415-515</title>
+
+
+
+  <!-- Google Fonts: Plus Jakarta Sans, Outfit & Cinzel for Luxury Classical Headings -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+
+    rel="stylesheet">
+
+
+
+  <!-- Tailwind CSS CDN -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+
+    tailwind.config = {
+
+      darkMode: 'class',
+
+      theme: {
+
+        extend: {
+
+          fontFamily: {
+
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+
+            display: ['Outfit', 'sans-serif'],
+
+            serif: ['Cinzel', 'serif']
+
+          },
+
+          colors: {
+
+            gold: {
+
+              300: '#fde68a',
+
+              400: '#fbbf24',
+
+              500: '#d4af37',
+
+              600: '#b48a1b',
+
+              700: '#926c0e'
+
+            },
+
+            onyx: {
+
+              900: '#06090e',
+
+              800: '#0a0f18',
+
+              700: '#111827',
+
+              600: '#1e293b'
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  </script>
+
+
+
+  <!-- Bootstrap Icons & Lucide CDN -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Canvas Confetti for Simulator Win -->
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+
+
+  <style>
+
+    /* ==========================================================================
+
+       LUXURY LIGHT EXECUTIVE STYLES & ENHANCED LEGIBILITY
+
+       ========================================================================== */
+
+    :root {
+
+      --primary-gold: #b48a1b;
+
+      --gold-glow: rgba(180, 138, 27, 0.25);
+
+      --surface-light: #ffffff;
+
+      --surface-ivory: #faf8f5;
+
+      --surface-accent: #f4efe6;
+
+      --text-main: #0f172a;
+
+      --text-muted: #475569;
+
+    }
+
+
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+
+
+    body {
+
+      background-color: #faf8f5;
+
+      color: #1e293b;
+
+      overflow-x: hidden;
+
+      font-family: 'Plus Jakarta Sans', sans-serif;
+
+      font-size: 16px;
+
+    }
+
+
+
+    /* Scroll progress bar */
+
+    #readingProgressBar {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      height: 5px;
+
+      width: 0%;
+
+      background: linear-gradient(90deg, #1d4ed8, #d4af37, #f59e0b);
+
+      z-index: 9999;
+
+      box-shadow: 0 2px 10px rgba(180, 138, 27, 0.4);
+
+      transition: width 0.1s ease-out;
+
+    }
+
+
+
+    /* Glassmorphic Light Navbar */
+
+    .glass-nav {
+
+      background: rgba(255, 255, 255, 0.92);
+
+      backdrop-filter: blur(16px);
+
+      -webkit-backdrop-filter: blur(16px);
+
+      border-bottom: 1px solid rgba(180, 138, 27, 0.22);
+
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+
+    }
+
+
+
+    /* Hero Parallax and Vignette (Light-toned warm overlay) */
+
+    .hero-bg {
+
+      background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.82) 0%, rgba(250, 248, 245, 0.96) 90%), url('img/hero_dining_room.jpg'), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=85');
+
+      background-size: cover;
+
+      background-position: center;
+
+      background-attachment: fixed;
+
+    }
+
+
+
+    /* Full-Bleed Parallax Breathers */
+
+    .parallax-section {
+
+      background-attachment: fixed;
+
+      background-position: center;
+
+      background-size: cover;
+
+      position: relative;
+
+    }
+
+
+
+    .parallax-quote-carreno {
+
+      background-image: linear-gradient(180deg, rgba(250, 248, 245, 0.94) 0%, rgba(244, 239, 230, 0.88) 50%, rgba(250, 248, 245, 0.96) 100%), url('img/carreno_1853_salon.jpg'), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=2000&q=85');
+
+    }
+
+
+
+    .parallax-dealmaker {
+
+      background-image: linear-gradient(180deg, rgba(250, 248, 245, 0.94) 0%, rgba(244, 239, 230, 0.9) 50%, rgba(250, 248, 245, 0.96) 100%), url('img/dealmaker_toast.jpg'), url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=2000&q=85');
+
+    }
+
+
+
+    /* Gold Gradient Text */
+
+    .text-gold-gradient {
+
+      background: linear-gradient(135deg, #b45309 0%, #b48a1b 50%, #78350f 100%);
+
+      -webkit-background-clip: text;
+
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      color: transparent;
+
+    }
+
+
+
+    .text-blue-gradient {
+
+      background: linear-gradient(135deg, #1d4ed8 0%, #0369a1 50%, #1e40af 100%);
+
+      -webkit-background-clip: text;
+
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      color: transparent;
+
+    }
+
+
+
+    /* Gold Buttons */
+
+    .btn-gold {
+
+      background: linear-gradient(135deg, #d4af37 0%, #b48a1b 100%);
+
+      color: #ffffff;
+
+      font-weight: 700;
+
+      box-shadow: 0 4px 18px rgba(180, 138, 27, 0.28);
+
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    }
+
+
+
+    .btn-gold:hover {
+
+      transform: translateY(-2px);
+
+      box-shadow: 0 8px 26px rgba(180, 138, 27, 0.45);
+
+      background: linear-gradient(135deg, #e5c158 0%, #c59b27 100%);
+
+    }
+
+
+
+    /* 3D Flip Card Component */
+
+    /* 3D Flip Card Component */
+    .flip-card {
+      background-color: transparent;
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
+      height: 530px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      border-radius: 1.5rem;
+    }
+
+    .flip-card.is-flipped .flip-card-inner {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      border-radius: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .flip-card-front {
+      z-index: 2;
+      transform: rotateY(0deg);
+      -webkit-transform: rotateY(0deg);
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+      z-index: 1;
+    }
+
+    .flip-card.is-flipped .flip-card-front {
+      z-index: 1;
+    }
+
+    .flip-card.is-flipped .flip-card-back {
+      z-index: 2;
+    }
+
+    /* Table Hotspot Pins */
+
+    .table-pin {
+
+      position: absolute;
+
+      transform: translate(-50%, -50%);
+
+      cursor: pointer;
+
+      z-index: 20;
+
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    }
+
+
+
+    .table-pin:hover,
+
+    .table-pin.active {
+
+      transform: translate(-50%, -50%) scale(1.22);
+
+    }
+
+
+
+    .table-pin .pulse {
+
+      position: absolute;
+
+      inset: -6px;
+
+      border-radius: 9999px;
+
+      background: rgba(180, 138, 27, 0.65);
+
+      animation: pinPulse 2s infinite;
+
+    }
+
+
+
+    @keyframes pinPulse {
+
+      0% {
+
+        transform: scale(0.9);
+
+        opacity: 0.9;
+
+      }
+
+      70% {
+
+        transform: scale(2.2);
+
+        opacity: 0;
+
+      }
+
+      100% {
+
+        transform: scale(0.9);
+
+        opacity: 0;
+
+      }
+
+    }
+
+
+
+    
+
+    /* ==========================================================================
+
+       CARTIER & AWWWARDS LUXURY MOTION SYSTEM & 3D TILT
+
+       ========================================================================== */
+
+    .tilt-card, [data-tilt="true"], .culinary-card, .pillar-card {
+
+      will-change: transform, opacity;
+
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+
+    }
+
+
+
+    img {
+
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+
+    }
+
+
+
+    button, a {
+
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    }
+
+
+
+    .table-pin {
+
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+
+    }
+
+
+
+    .table-pin:hover {
+
+      transform: scale(1.18);
+
+    }
+
+
+
+    /* Simulator Dialogue Box Typing Cursor */
+
+    .cursor-blink {
+
+      animation: blink 1s step-end infinite;
+
+    }
+
+
+
+    @keyframes blink {
+
+      0%, 100% { opacity: 1; }
+
+      50% { opacity: 0; }
+
+    }
+
+  </style>
+
+<style>
+
+    /* ==========================================================================
+
+       PRINT STYLES: EXACT 1-PAGE POCKET CHEAT-SHEET
+
+       ========================================================================== */
+
+    @media print {
+
+      @page {
+
+        size: letter portrait;
+
+        margin: 8mm;
+
+      }
+
+      html, body {
+
+        background: #ffffff !important;
+
+        color: #0f172a !important;
+
+        font-size: 11pt !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+      }
+
+      body > *:not(#pocketModal) {
+
+        display: none !important;
+
+      }
+
+      #pocketModal {
+
+        display: block !important;
+
+        position: static !important;
+
+        width: 100% !important;
+
+        height: auto !important;
+
+        background: transparent !important;
+
+        backdrop-filter: none !important;
+
+        padding: 0 !important;
+
+        margin: 0 !important;
+
+        overflow: visible !important;
+
+      }
+
+      #pocketModal > div {
+
+        max-width: 100% !important;
+
+        max-height: none !important;
+
+        box-shadow: none !important;
+
+        border: 2px solid #b45309 !important;
+
+        border-radius: 14px !important;
+
+        padding: 16px 20px !important;
+
+        margin: 0 !important;
+
+        overflow: visible !important;
+
+        page-break-inside: avoid !important;
+
+      }
+
+      #pocketModal button,
+
+      #pocketModal .flex.items-center.justify-between.pt-5,
+
+      #pocketModal button[onclick*="closePocketModal"] {
+
+        display: none !important;
+
+      }
+
+    }
+
+</style>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+</head>
+
+
+
+<body class="bg-[#faf8f5] text-slate-800 antialiased selection:bg-amber-200 selection:text-amber-950">
+
+
+
+  <!-- Dynamic Reading Progress Bar -->
+
+  <div id="readingProgressBar"></div>
+
+
+
+  
+
+
+
+  <!-- ==========================================================================
+
+       1. STICKY TOPBAR / EXECUTIVE NAVIGATION
+
+       ========================================================================== -->
+
+  <header class="glass-nav sticky top-0 z-40 w-full transition-all duration-300 border-b border-amber-200/80 bg-white/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-2 xl:gap-4">
+
+        <!-- Identity / Crest (Strictly single-line, flex-shrink-0 so it NEVER overflows or wraps) -->
+        <a href="#overview" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0 text-decoration-none">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-300 flex items-center justify-center text-amber-700 group-hover:border-amber-500 transition-all duration-300 shadow-sm flex-shrink-0">
+            <i class="bi bi-cup-hot-fill text-xl sm:text-2xl"></i>
+          </div>
+          <div class="leading-none flex flex-col justify-center flex-shrink-0">
+            <span class="block text-xs sm:text-sm font-bold tracking-tight font-display uppercase text-slate-900 group-hover:text-amber-700 transition-colors whitespace-nowrap">
+              EXECUTIVE DINING ETIQUETTE
+            </span>
+            <span class="block text-[10px] sm:text-[11px] font-mono tracking-tight text-slate-500 font-semibold mt-1 whitespace-nowrap">
+              SIE 415-515 Technical Sales &amp; Marketing
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links (Clean, uniform styling for all links, no duplicates) -->
+        <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1.5 flex-shrink min-w-0">
+          <a href="#foundations"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-compass mr-1 text-amber-600"></i> 3-Phase Guide
+          </a>
+          <a href="#table-anatomy"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-aspect-ratio mr-1 text-amber-600"></i> Table Anatomy
+          </a>
+          <a href="#carreno-rules"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-journal-bookmark-fill mr-1 text-amber-600"></i> Carreño's Code
+          </a>
+          <a href="#awkward-scenarios"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-shield-check mr-1 text-amber-600"></i> Scenarios
+          </a>
+          <a href="#simulator"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-person-video2 mr-1 text-amber-600"></i> Simulator
+          </a>
+          <a href="#survey"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-card-checklist mr-1 text-amber-600"></i> Survey
+          </a>
+          <a href="#references"
+            class="px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-amber-700 transition-colors rounded-lg hover:bg-amber-50 whitespace-nowrap">
+            <i class="bi bi-book mr-1 text-amber-600"></i> References
+          </a>
+        </nav>
+
+        <!-- Right CTA Button -->
+        <div class="hidden sm:flex items-center gap-2 flex-shrink-0">
+          <button type="button" onclick="openPocketModal()"
+            class="px-3.5 xl:px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-900 bg-amber-400 hover:bg-amber-300 rounded-xl transition-all shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+            <i class="bi bi-file-earmark-text-fill text-sm"></i> Cheat-Sheet
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" type="button" class="lg:hidden p-2 text-slate-800 hover:text-amber-700 text-2xl flex-shrink-0"
+          aria-label="Toggle Mobile Navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileDrawer" class="hidden lg:hidden px-6 pt-3 pb-6 bg-white/95 border-b border-amber-200 shadow-xl backdrop-blur-xl">
+      <div class="flex flex-col gap-2">
+        <a href="#foundations" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">3-Phase Protocol</a>
+        <a href="#table-anatomy" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">Formal Table Anatomy (BMW)</a>
+        <a href="#carreno-rules" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">Carreño's Code (1853)</a>
+        <a href="#awkward-scenarios" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">Awkward Damage Control</a>
+        <a href="#simulator" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">Dining Simulator</a>
+        <a href="#survey" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">Dining Readiness Survey</a>
+        <a href="#references" class="py-2 text-sm font-semibold text-slate-800 hover:text-amber-700 border-b border-slate-100" onclick="toggleMobileMenu()">The Vault & References</a>
+        <button type="button" onclick="openPocketModal(); toggleMobileMenu();" class="mt-2 w-full py-2.5 text-center text-xs font-bold uppercase tracking-wider text-slate-900 bg-amber-400 rounded-xl shadow-md">
+          Pocket Cheat-Sheet
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- ==========================================================================
+
+       2. CINEMATIC HERO SECTION (BRIGHT & AIRY LUXURY THEME)
+
+       ========================================================================== -->
+
+  <section id="overview" class="hero-bg min-h-screen relative flex items-center justify-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 border-b border-amber-200/60">
+
+    <div class="absolute inset-0 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/60 to-transparent"></div>
+
+
+
+    <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+
+
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100/90 border border-amber-300/80 text-amber-900 text-sm font-bold tracking-wide shadow-sm">
+
+          <i class="bi bi-shield-fill-check text-base text-amber-700"></i>
+
+          <span>Academic Sales Protocol • SIE 415-515</span>
+
+        </div>
+
+
+
+        <h1 class="text-4xl sm:text-6xl xl:text-7xl font-extrabold font-display tracking-tight text-slate-900 leading-[1.15]">
+
+          Master the Art of the <br />
+
+          <span class="text-blue-gradient">Executive Lunch</span> &amp;
+
+          <span class="text-gold-gradient block mt-1">High-Stakes Dining</span>
+
+        </h1>
+
+
+
+        <p class="text-lg sm:text-xl text-slate-700 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
+
+          In engineering, technology sales, and executive management, multi-million dollar contracts are rarely finalized
+
+          in meeting rooms alone. Sharing a meal is the ultimate key test of emotional intelligence, cultural poise,
+
+          and genuine character.
+
+        </p>
+
+
+
+        <!-- CTA Cluster -->
+
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+
+          <a href="#simulator" class="btn-gold px-8 py-4 rounded-xl text-base font-extrabold uppercase tracking-wider flex items-center gap-3">
+
+            <i class="bi bi-play-circle-fill text-xl"></i> Launch Dealmaker Simulator
+
+          </a>
+
+          <button type="button" onclick="openPocketModal()" class="px-6 py-4 rounded-xl text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border-2 border-slate-300 backdrop-blur-md transition-all shadow-md flex items-center gap-2">
+
+            <i class="bi bi-file-earmark-pdf-fill text-amber-600 text-lg"></i> Pocket Cheat-Sheet
+
+          </button>
+
+        </div>
+
+
+
+        <!-- 3 Quantitative KPIs -->
+
+        <div class="grid grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-amber-200/80">
+
+          <div class="bg-white border border-amber-200/80 rounded-2xl p-4 sm:p-5 text-center shadow-md">
+
+            <div class="text-2xl sm:text-4xl font-extrabold text-blue-700 font-display">85%</div>
+
+            <div class="text-xs sm:text-sm font-bold text-slate-600 mt-1 uppercase tracking-wide">Deals Sealed Over Food</div>
+
+          </div>
+
+          <div class="bg-white border border-amber-200/80 rounded-2xl p-4 sm:p-5 text-center shadow-md">
+
+            <div class="text-2xl sm:text-4xl font-extrabold text-amber-700 font-display">100%</div>
+
+            <div class="text-xs sm:text-sm font-bold text-slate-600 mt-1 uppercase tracking-wide">The Waiter Rule Weight</div>
+
+          </div>
+
+          <div class="bg-white border border-amber-200/80 rounded-2xl p-4 sm:p-5 text-center shadow-md">
+
+            <div class="text-2xl sm:text-4xl font-extrabold text-emerald-700 font-display">0 Phones</div>
+
+            <div class="text-xs sm:text-sm font-bold text-slate-600 mt-1 uppercase tracking-wide">Allowed On Dining Linen</div>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+      <!-- Luxury Floating Visual Card -->
+
+      <div class="lg:col-span-5 relative hidden lg:block">
+
+        <div class="relative rounded-3xl overflow-hidden border-2 border-amber-300 shadow-2xl group bg-white tilt-card" data-tilt="true">
+
+          <img src="img/hero_dining_room.jpg"
+
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80';"
+
+            alt="Michelin Star Private Dining Room"
+
+            class="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+
+
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+
+
+          <!-- Floating Badges -->
+
+          <div class="absolute top-4 left-4 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-amber-300 text-amber-900 text-xs sm:text-sm font-bold flex items-center gap-2 shadow-lg">
+
+            <i class="bi bi-award-fill text-amber-600 text-base"></i> Michelin Private Dining Protocol
+
+          </div>
+
+
+
+          <div class="absolute bottom-5 left-5 right-5 p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-amber-200 shadow-xl">
+
+            <div class="flex items-center justify-between">
+
+              <div>
+
+                <p class="text-xs uppercase tracking-wider text-amber-800 font-mono font-bold">First Impression Rule</p>
+
+                <p class="text-base font-bold text-slate-900 mt-0.5">Assessed Before the Appetizer Arrives</p>
+
+              </div>
+
+              <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700">
+
+                <i class="bi bi-clock-history text-2xl"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       3. SECTION 1: THE 3-PHASE TECHNICAL SALES PROTOCOL
+
+       ========================================================================== -->
+
+  <section id="foundations" class="py-24 bg-[#faf8f5] relative">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+
+      <!-- Section Title Header -->
+
+      <div class="text-center max-w-3xl mx-auto mb-16">
+
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-800 bg-blue-100 border border-blue-300 mb-3">
+
+          <i class="bi bi-diagram-3 text-base"></i> Core Strategic Architecture
+
+        </span>
+
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-slate-900 tracking-tight">
+
+          The 3-Phase Business Dining Lifecycle
+
+        </h2>
+
+        <p class="text-slate-600 text-base sm:text-lg mt-3 leading-relaxed">
+
+          From the venue scouting 24 hours prior, to the silent signals at the table, to the 24-hour follow-up formula that cements trust.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- 3-Phase Accordion Ribbon Grid -->
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+
+
+
+        <!-- Phase 1 Card -->
+
+        <div class="rounded-3xl bg-white border-2 border-amber-100 hover:border-amber-400 transition-all duration-300 p-7 flex flex-col justify-between group shadow-lg tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="relative h-52 rounded-2xl overflow-hidden mb-6">
+
+              <img src="img/host_restaurant_exterior.jpg"
+
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80';"
+
+                alt="Executive Venue Strategy"
+
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+              <div class="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-white/95 border border-amber-300 text-amber-900 text-xs font-mono font-bold shadow-md">
+
+                PHASE 01 • 24H PRIOR
+
+              </div>
+
+            </div>
+
+
+
+            <h3 class="text-2xl font-bold text-slate-900 mb-2 group-hover:text-amber-800 transition-colors">
+
+              Pre-Meal Host Strategy
+
+            </h3>
+
+            <p class="text-base text-slate-600 leading-relaxed mb-5">
+
+              A flawless executive lunch is won before sitting down. Discreetly vet dietary needs, inspect acoustics, and place your card on file with the maître d'.
+
+            </p>
+
+
+
+            <ul class="space-y-3 text-sm sm:text-base text-slate-700 border-t border-slate-100 pt-5">
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>Acoustic Vetting:</strong> Table positioned away from kitchen doors and high traffic.</span>
+
+              </li>
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>Punctuality Protocol:</strong> Arrive 15 minutes early as host; never make guests wait.</span>
+
+              </li>
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>The Stealth Card:</strong> Give your card to staff beforehand to eliminate the bill showdown.</span>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+
+
+          <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-500 font-mono">
+
+            <span>Chaney &amp; Martin (2007)</span>
+
+            <span class="text-amber-700 font-bold">Strategic Host</span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Phase 2 Card -->
+
+        <div class="rounded-3xl bg-white border-2 border-amber-100 hover:border-amber-400 transition-all duration-300 p-7 flex flex-col justify-between group shadow-lg tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="relative h-52 rounded-2xl overflow-hidden mb-6">
+
+              <img src="img/napkin_placement_lap.jpg"
+
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';"
+
+                alt="Table Conduct and Napkin Etiquette"
+
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+              <div class="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-white/95 border border-amber-300 text-amber-900 text-xs font-mono font-bold shadow-md">
+
+                PHASE 02 • ACTIVE DINING
+
+              </div>
+
+            </div>
+
+
+
+            <h3 class="text-2xl font-bold text-slate-900 mb-2 group-hover:text-amber-800 transition-colors">
+
+              Execution at the Table
+
+            </h3>
+
+            <p class="text-base text-slate-600 leading-relaxed mb-5">
+
+              Executive poise is revealed through silent signals, steady posture, outside-in utensil progression, and pacing bites to match your client.
+
+            </p>
+
+
+
+            <ul class="space-y-3 text-sm sm:text-base text-slate-700 border-t border-slate-100 pt-5">
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>The BMW Rule:</strong> Bread on Left, Meal in Center, Water/Wine on Right.</span>
+
+              </li>
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>The Host Fork Rule:</strong> Never take the first bite until the host lifts their utensil.</span>
+
+              </li>
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>Clean Ordering:</strong> Choose fork-tender dishes; avoid finger-food and sauce splatters.</span>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+
+
+          <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-500 font-mono">
+
+            <span>Carreño (1853) / Robin Jay</span>
+
+            <span class="text-amber-700 font-bold">Poise &amp; Decorum</span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Phase 3 Card -->
+
+        <div class="rounded-3xl bg-white border-2 border-amber-100 hover:border-amber-400 transition-all duration-300 p-7 flex flex-col justify-between group shadow-lg tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="relative h-52 rounded-2xl overflow-hidden mb-6">
+
+              <img src="img/stealthy_bill_settlement.jpg"
+
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';"
+
+                alt="Settlement and Deal Follow-Up"
+
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+              <div class="absolute top-3 left-3 px-3 py-1.5 rounded-lg bg-white/95 border border-amber-300 text-amber-900 text-xs font-mono font-bold shadow-md">
+
+                PHASE 03 • SETTLEMENT &amp; ROI
+
+              </div>
+
+            </div>
+
+
+
+            <h3 class="text-2xl font-bold text-slate-900 mb-2 group-hover:text-amber-800 transition-colors">
+
+              Settlement &amp; 24h Follow-Up
+
+            </h3>
+
+            <p class="text-base text-slate-600 leading-relaxed mb-5">
+
+              Turn dining rapport into commercial velocity. The host covers 100%, tipping 20%, followed by a targeted email sent within 24 hours.
+
+            </p>
+
+
+
+            <ul class="space-y-3 text-sm sm:text-base text-slate-700 border-t border-slate-100 pt-5">
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>Zero Bill Splitting:</strong> The party extending the invitation covers the full invoice.</span>
+
+              </li>
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>24-Hour Formula:</strong> Gratitude + 1 specific conversation takeaway + next deliverable.</span>
+
+              </li>
+
+              <li class="flex items-start gap-2.5">
+
+                <i class="bi bi-check-circle-fill text-amber-600 text-base mt-0.5"></i>
+
+                <span><strong>CRM Archival:</strong> Record dietary notes and personal milestones immediately.</span>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+
+
+          <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-500 font-mono">
+
+            <span>Keith Ferrazzi (2005)</span>
+
+            <span class="text-amber-700 font-bold">Deal Velocity</span>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+      <!-- ====================================================================
+
+           CULINARY MATRIX: SAFE VS. MESSY BUSINESS DISHES
+
+           ==================================================================== -->
+
+      <div class="rounded-3xl bg-white border-2 border-amber-200/80 p-8 sm:p-10 shadow-xl">
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+
+          <div>
+
+            <span class="text-xs sm:text-sm font-mono uppercase tracking-wider text-amber-800 font-bold">Tactical Ordering Matrix</span>
+
+            <h3 class="text-2xl sm:text-4xl font-bold text-slate-900 font-display mt-1">
+
+              Safe Selections vs. Catastrophic Entrées
+
+            </h3>
+
+            <p class="text-slate-600 text-base sm:text-lg max-w-xl mt-1">
+
+              Filter dishes below to master which meals preserve executive posture and which invite grease splatters and distraction.
+
+            </p>
+
+          </div>
+
+
+
+          <!-- Filter Buttons -->
+
+          <div class="flex items-center gap-2 bg-[#f4efe6] p-1.5 rounded-2xl border border-amber-200">
+
+            <button type="button" onclick="filterDishes('all')" id="filterBtnAll"
+
+              class="px-5 py-2 text-sm font-bold rounded-xl bg-amber-500 text-white shadow-md transition-all">
+
+              All (8)
+
+            </button>
+
+            <button type="button" onclick="filterDishes('safe')" id="filterBtnSafe"
+
+              class="px-5 py-2 text-sm font-semibold rounded-xl text-slate-700 hover:text-slate-900 transition-all">
+
+              Safe Choices (4)
+
+            </button>
+
+            <button type="button" onclick="filterDishes('risky')" id="filterBtnRisky"
+
+              class="px-5 py-2 text-sm font-semibold rounded-xl text-slate-700 hover:text-slate-900 transition-all">
+
+              Messy Traps (4)
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- 8 Culinary Cards Grid -->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="culinaryCardsGrid">
+
+
+
+          <!-- Safe 1: Salmon -->
+
+          <div class="culinary-card safe-card rounded-2xl bg-[#faf8f5] border-2 border-emerald-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/safe_dish_salmon.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="Salmon Fillet" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-emerald-600 text-white font-bold text-xs uppercase shadow">
+
+                  Safe Choice
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Pan-Seared Salmon Fillet</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Boneless, cuts effortlessly with a fork. Zero splatter risk onto shirts or ties.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-emerald-800 font-bold font-mono">
+
+              <i class="bi bi-shield-check text-base"></i> Executive Standard
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Safe 2: Filet Mignon -->
+
+          <div class="culinary-card safe-card rounded-2xl bg-[#faf8f5] border-2 border-emerald-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/safe_tenderloin_steak.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="Filet Mignon" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-emerald-600 text-white font-bold text-xs uppercase shadow">
+
+                  Safe Choice
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Center-Cut Filet Mignon</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Zero bone, zero gristle. Slices smoothly into single, neat, bite-sized portions.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-emerald-800 font-bold font-mono">
+
+              <i class="bi bi-shield-check text-base"></i> Cut 1 bite at a time
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Safe 3: Chicken Breast -->
+
+          <div class="culinary-card safe-card rounded-2xl bg-[#faf8f5] border-2 border-emerald-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/safe_chicken_breast.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="Chicken Breast" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-emerald-600 text-white font-bold text-xs uppercase shadow">
+
+                  Safe Choice
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Herb Roasted Chicken</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Boneless and universally accepted across international client cultures.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-emerald-800 font-bold font-mono">
+
+              <i class="bi bi-shield-check text-base"></i> Clean &amp; Inoffensive
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Safe 4: Wild Mushroom Risotto -->
+
+          <div class="culinary-card safe-card rounded-2xl bg-[#faf8f5] border-2 border-emerald-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/safe_mushroom_risotto.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="Wild Mushroom Risotto" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-emerald-600 text-white font-bold text-xs uppercase shadow">
+
+                  Safe Choice
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Wild Mushroom Risotto</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Cohesive texture, eaten cleanly with fork. The premier vegetarian solution.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-emerald-800 font-bold font-mono">
+
+              <i class="bi bi-shield-check text-base"></i> Vegetarian Benchmark
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Risky 1: Spaghetti -->
+
+          <div class="culinary-card risky-card rounded-2xl bg-[#faf8f5] border-2 border-rose-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/risky_pasta_spaghetti.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="Spaghetti" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-rose-600 text-white font-bold text-xs uppercase shadow">
+
+                  High Risk
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Spaghetti Bolognese</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Long strands inevitably whip sauce droplets across crisp white shirts.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-rose-800 font-bold font-mono">
+
+              <i class="bi bi-x-octagon text-base"></i> Order Penne Instead
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Risky 2: Whole Lobster -->
+
+          <div class="culinary-card risky-card rounded-2xl bg-[#faf8f5] border-2 border-rose-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/risky_dish_lobster.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="Whole Lobster" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-rose-600 text-white font-bold text-xs uppercase shadow">
+
+                  High Risk
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Whole Lobster &amp; Shellfish</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Requires metal crackers, bibs, and bare hands. High splatter hazard for tablemates.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-rose-800 font-bold font-mono">
+
+              <i class="bi bi-x-octagon text-base"></i> Choose Pre-Shelled Fish
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Risky 3: French Onion Soup -->
+
+          <div class="culinary-card risky-card rounded-2xl bg-[#faf8f5] border-2 border-rose-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/risky_onion_soup.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="French Onion Soup" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-rose-600 text-white font-bold text-xs uppercase shadow">
+
+                  High Risk
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">French Onion Soup</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Melted Gruyère forms boiling cheese strings from bowl to chin during speech.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-rose-800 font-bold font-mono">
+
+              <i class="bi bi-x-octagon text-base"></i> Opt for Clear Broth
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Risky 4: Bone-In Ribs -->
+
+          <div class="culinary-card risky-card rounded-2xl bg-[#faf8f5] border-2 border-rose-200 overflow-hidden flex flex-col justify-between shadow-sm">
+
+            <div>
+
+              <div class="relative h-40 overflow-hidden">
+
+                <img src="img/risky_bbq_ribs.jpg"
+
+                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80';"
+
+                  alt="BBQ Ribs" class="w-full h-full object-cover">
+
+                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-rose-600 text-white font-bold text-xs uppercase shadow">
+
+                  High Risk
+
+                </span>
+
+              </div>
+
+              <div class="p-5">
+
+                <h4 class="font-bold text-slate-900 text-lg">Bone-In Ribs &amp; Wings</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 mt-2">Coats fingers in sticky glaze, preventing handshakes, pen use, or note-taking.</p>
+
+              </div>
+
+            </div>
+
+            <div class="p-5 pt-0 text-xs sm:text-sm text-rose-800 font-bold font-mono">
+
+              <i class="bi bi-x-octagon text-base"></i> Zero Finger Foods
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       4. FULL-BLEED EDITORIAL BREATHER (CARREÑO CLASSICAL PHILOSOPHY)
+
+       ========================================================================== -->
+
+  <section class="parallax-section parallax-quote-carreno py-32 px-4 border-y-2 border-amber-200">
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+
+      <div class="w-16 h-16 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center text-amber-700 text-3xl mx-auto mb-6 shadow-md">
+
+        <i class="bi bi-quote"></i>
+
+      </div>
+
+      <p class="font-serif text-2xl sm:text-4xl text-slate-900 font-semibold leading-relaxed italic">
+
+        "The dining table is where a person's culture and education are most promptly revealed. Decency demands strict respect for the table, courteous treatment of waitstaff, and harmony with companions."
+
+      </p>
+
+      <div class="mt-8">
+
+        <h4 class="text-amber-800 font-extrabold uppercase tracking-widest text-base font-sans">Manuel Antonio Carreño</h4>
+
+        <p class="text-slate-600 text-sm font-mono font-medium mt-1">Manual de Urbanidad y Buenas Costumbres • Caracas &amp; Madrid (1853)</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       5. SECTION 2: INTERACTIVE FORMAL TABLE ANATOMY (BMW PROTOCOL)
+
+       ========================================================================== -->
+
+  <section id="table-anatomy" class="py-24 bg-[#faf8f5] relative">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+
+      <div class="text-center max-w-3xl mx-auto mb-16">
+
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-900 bg-amber-100 border border-amber-300 mb-3">
+
+          <i class="bi bi-aspect-ratio text-base"></i> Graphic Feature &amp; Tactile Inspector
+
+        </span>
+
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-slate-900 tracking-tight">
+
+          Interactive 5-Course Table Anatomy
+
+        </h2>
+
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+
+          Never touch your companion's bread or water again. Click on any hotspot to inspect its placement, purpose, and executive rule.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+
+
+        <!-- Interactive Hotspot Image Canvas -->
+
+        <div class="lg:col-span-8">
+
+          <div class="relative rounded-3xl overflow-hidden border-2 border-amber-300 shadow-2xl bg-white aspect-[16/10] sm:aspect-[16/9]">
+
+            <img src="img/table_setting_macro.jpg"
+
+              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=85';"
+
+              alt="Formal 5-Course Table Setting"
+
+              class="w-full h-full object-cover select-none">
+
+
+
+            <!-- BMW Guide Overlays -->
+
+            <div class="absolute top-4 left-6 pointer-events-none flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/95 border-2 border-amber-300 text-xs sm:text-sm font-mono font-bold text-slate-800 shadow-lg">
+
+              <span class="text-amber-700 font-extrabold">B</span> = Bread (Left) &bull;
+
+              <span class="text-blue-700 font-extrabold">M</span> = Meal (Center) &bull;
+
+              <span class="text-emerald-700 font-extrabold">W</span> = Water (Right)
+
+            </div>
+
+
+
+            <!-- Hotspot 1: Bread & Butter Plate (BMW: B) -->
+
+            <div class="table-pin" style="left: 22%; top: 48%;" onclick="inspectElement('bread-plate')" data-pin="bread-plate">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-9 h-9 rounded-full bg-amber-500 text-white font-extrabold text-sm flex items-center justify-center shadow-lg border-2 border-white">
+
+                B
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Hotspot 2: Salad & Dinner Forks -->
+
+            <div class="table-pin" style="left: 24%; top: 70%;" onclick="inspectElement('salad-fork')" data-pin="salad-fork">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-9 h-9 rounded-full bg-slate-900 text-amber-300 font-bold text-sm flex items-center justify-center shadow-lg border-2 border-white">
+
+                <i class="bi bi-filter-left"></i>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Hotspot 3: Charger Plate & Napkin (BMW: M) -->
+
+            <div class="table-pin active" style="left: 50%; top: 62%;" onclick="inspectElement('charger-plate')" data-pin="charger-plate">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-10 h-10 rounded-full bg-blue-600 text-white font-extrabold text-base flex items-center justify-center shadow-xl border-2 border-white ">
+
+                M
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Hotspot 4: Dessert Utensils -->
+
+            <div class="table-pin" style="left: 50%; top: 40%;" onclick="inspectElement('dessert-utensils')" data-pin="dessert-utensils">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-9 h-9 rounded-full bg-slate-900 text-amber-300 font-bold text-sm flex items-center justify-center shadow-lg border-2 border-white">
+
+                <i class="bi bi-arrow-left-right"></i>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Hotspot 5: Dinner Knife & Soup Spoon -->
+
+            <div class="table-pin" style="left: 76%; top: 70%;" onclick="inspectElement('dinner-knife')" data-pin="dinner-knife">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-9 h-9 rounded-full bg-slate-900 text-amber-300 font-bold text-sm flex items-center justify-center shadow-lg border-2 border-white">
+
+                <i class="bi bi-slash-lg"></i>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Hotspot 6: Water Goblet (BMW: W) -->
+
+            <div class="table-pin" style="left: 65%; top: 32%;" onclick="inspectElement('water-water glass')" data-pin="water-water glass">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-9 h-9 rounded-full bg-emerald-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg border-2 border-white">
+
+                W
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Hotspot 7: Wine Stemware -->
+
+            <div class="table-pin" style="left: 78%; top: 32%;" onclick="inspectElement('wine-glasses')" data-pin="wine-glasses">
+
+              <span class="pulse"></span>
+
+              <div class="relative w-9 h-9 rounded-full bg-rose-600 text-white font-bold text-sm flex items-center justify-center shadow-lg border-2 border-white">
+
+                🍷
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <!-- Quick Navigation Element Buttons Under Graphic -->
+
+          <div class="flex flex-wrap items-center justify-center gap-2 mt-5">
+
+            <button onclick="inspectElement('bread-plate')" data-pin="bread-plate" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-amber-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-circle text-amber-600 mr-1.5"></i> Bread Plate (B)
+
+            </button>
+
+            <button onclick="inspectElement('salad-fork')" data-pin="salad-fork" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-amber-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-filter-left text-amber-600 mr-1.5"></i> Salad &amp; Dinner Forks
+
+            </button>
+
+            <button onclick="inspectElement('charger-plate')" data-pin="charger-plate" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-amber-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-record-circle text-amber-600 mr-1.5"></i> Charger Plate (M)
+
+            </button>
+
+            <button onclick="inspectElement('dessert-utensils')" data-pin="dessert-utensils" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-amber-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-arrow-left-right text-amber-600 mr-1.5"></i> Dessert Cutlery
+
+            </button>
+
+            <button onclick="inspectElement('dinner-knife')" data-pin="dinner-knife" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-amber-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-slash-lg text-amber-600 mr-1.5"></i> Knife &amp; Soup Spoon
+
+            </button>
+
+            <button onclick="inspectElement('water-water glass')" data-pin="water-water glass" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-emerald-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-droplet-half text-emerald-600 mr-1.5"></i> Water Goblet (W)
+
+            </button>
+
+            <button onclick="inspectElement('wine-glasses')" data-pin="wine-glasses" class="table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-rose-400 text-sm font-bold text-slate-800 shadow-sm transition-all">
+
+              <i class="bi bi-cup-straw text-rose-600 mr-1.5"></i> Wine Stemware
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Dynamic Inspector Panel -->
+
+        <div class="lg:col-span-4">
+
+          <div class="rounded-3xl bg-white border-2 border-amber-300 p-6 sm:p-8 shadow-xl relative">
+
+            <div class="flex items-center justify-between mb-4">
+
+              <span id="inspTag" class="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-amber-900 px-3 py-1.5 rounded-lg bg-amber-100 border border-amber-300">
+
+                BMW Center Anchor
+
+              </span>
+
+              
+
+            </div>
+
+
+
+            <h3 id="inspTitle" class="text-2xl sm:text-3xl font-bold font-display text-slate-900 mb-3">
+
+              Charger &amp; Service Plate (BMW: "M")
+
+            </h3>
+
+
+
+            <p id="inspDesc" class="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 min-h-[90px]">
+
+              The central anchor of formal dining. Course plates are placed directly on top of the charger to preserve the pristine table linens.
+
+            </p>
+
+
+
+            <div class="rounded-2xl bg-[#faf8f5] border border-amber-200 p-5 mb-6">
+
+              <div class="flex items-center gap-2 text-amber-800 text-sm font-bold uppercase mb-1.5">
+
+                <i class="bi bi-lightbulb-fill text-base"></i> Executive Protocol Rule
+
+              </div>
+
+              <p id="inspRule" class="text-sm sm:text-base text-slate-700 leading-relaxed">
+
+                Always wait for the host to lift their fork before eating. The charger remains on the table until the main course plates are cleared.
+
+              </p>
+
+            </div>
+
+
+
+            
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       6. SECTION 3: CLASSICAL PROTOCOL - CARREÑO'S CODE & ERA SIMULATOR
+
+       ========================================================================== -->
+
+  <section id="carreno-rules" class="py-24 bg-white relative border-y border-amber-200">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+
+      <div class="text-center max-w-3xl mx-auto mb-16">
+
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-900 bg-amber-100 border border-amber-300 mb-3">
+
+          <i class="bi bi-award-fill text-base"></i> Classic Etiquette Guide
+
+        </span>
+
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-slate-900 tracking-tight">
+
+          Carreño's Code (1853) vs. Modern Tech Sales (2026)
+
+        </h2>
+
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+
+          Explore how Manuel Antonio Carreño's classic 1853 rules directly govern today's Fortune 500 sales meetings.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- Era Switcher Dynamic Comparison -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+
+
+
+        <!-- 1853 Classical Card -->
+
+        <div class="rounded-3xl bg-[#faf8f5] border-2 border-amber-200 p-8 sm:p-10 flex flex-col justify-between shadow-lg">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-5">
+
+              <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold text-amber-900 bg-amber-100 border border-amber-300">
+
+                1853 • Manual de Urbanidad
+
+              </span>
+
+              <i class="bi bi-feather text-amber-700 text-2xl"></i>
+
+            </div>
+
+            <h3 class="text-2xl font-bold font-serif text-slate-900 mb-3">
+
+              "El decoro en la mesa y el respeto a la servidores"
+
+            </h3>
+
+            <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-6">
+
+              Shouting at waitstaff, snapping fingers, or gesturing with cutlery reveals vulgarity and lack of moral education. Hands must remain resting naturally at the table edge.
+
+            </p>
+
+            <div class="p-5 rounded-2xl bg-white border border-amber-200 text-sm sm:text-base text-amber-950 leading-relaxed shadow-sm">
+
+              <strong>Carreño's Maxima:</strong> "Civic decorum at the table is the immediate index of a person's personal upbringing, self-control, and personal character."
+
+            </div>
+
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-mono font-semibold">
+
+            Carreño Chapter IV-V &bull; Caracas / Madrid Archives
+
+          </div>
+
+        </div>
+
+
+
+        <!-- 2026 Modern Executive Card -->
+
+        <div class="rounded-3xl bg-[#faf8f5] border-2 border-blue-200 p-8 sm:p-10 flex flex-col justify-between shadow-lg">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-5">
+
+              <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold text-blue-900 bg-blue-100 border border-blue-300">
+
+                2026 • Fortune 500 Executive Sales
+
+              </span>
+
+              <i class="bi bi-briefcase-fill text-blue-700 text-2xl"></i>
+
+            </div>
+
+            <h3 class="text-2xl font-bold font-display text-slate-900 mb-3">
+
+              "The Waiter Rule &amp; Closing High-Stakes Tech Deals"
+
+            </h3>
+
+            <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-6">
+
+              CEOs report dropping competing candidates if they treat waitstaff rudely. Arrogance to service staff signals high future problems with client teams.
+
+            </p>
+
+            <div class="p-5 rounded-2xl bg-white border border-blue-200 text-sm sm:text-base text-blue-950 leading-relaxed shadow-sm">
+
+              <strong>Modern Deal Maxima:</strong> "A person who is nice to you, but rude to the waiter, is not a nice person." — The Waiter Rule (Swan &amp; Jay).
+
+            </div>
+
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-mono font-semibold">
+
+            SIE 415-515 Technical Sales &amp; Relationship Building
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    
+
+      <!-- Carreño's 3 Pillars Accordion Deck (Centered) -->
+
+      <div class="mt-12">
+
+        <div class="text-center max-w-2xl mx-auto mb-8">
+
+          <span class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold text-amber-900 bg-amber-100 border border-amber-300">
+
+            3 Classical Pillars
+
+          </span>
+
+          <h3 class="text-2xl sm:text-3xl font-bold font-display text-slate-900 mt-2">
+
+            The 3 Pillars of Carreño's Code
+
+          </h3>
+
+        </div>
+
+
+
+        <div class="flex flex-col gap-4" id="pillarsAccordionDeck">
+
+          <!-- Pillar 1 -->
+
+          <div class="pillar-card border-2 border-amber-300 rounded-2xl bg-white overflow-hidden shadow-md">
+
+            <div class="p-5 sm:p-6 bg-[#faf8f5] flex items-center justify-between cursor-pointer" onclick="togglePillar(1)">
+
+              <div class="flex items-center gap-3">
+
+                <span class="w-8 h-8 rounded-lg bg-amber-500 text-white font-bold flex items-center justify-center text-sm">01</span>
+
+                <h4 class="text-lg sm:text-xl font-bold text-slate-900">Table Decorum &amp; Objects</h4>
+
+              </div>
+
+              <i class="bi bi-chevron-up text-amber-700 text-lg transition-transform" id="pillarIcon1"></i>
+
+            </div>
+
+            <div class="p-6 border-t border-amber-100" id="pillarBody1">
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+
+                <div class="md:col-span-4 h-44 rounded-xl overflow-hidden border border-slate-200">
+
+                  <img src="img/carreno_1853_salon.jpg" alt="Table Decorum" class="w-full h-full object-cover">
+
+                </div>
+
+                <div class="md:col-span-8">
+
+                  <p class="text-slate-700 text-base mb-3 leading-relaxed">
+
+                    Carreño sets strict rules for formal meals and table objects:
+
+                  </p>
+
+                  <ul class="space-y-2 text-slate-700 text-sm sm:text-base">
+
+                    <li class="flex items-start gap-2"><i class="bi bi-x-circle-fill text-rose-600 mt-0.5"></i> <span><strong>Clean Table:</strong> Keep phones, keys, and papers off the table.</span></li>
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Napkin Use:</strong> Dab lips before and after drinking. Never wipe silverware or face.</span></li>
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Posture:</strong> Sit upright with elbows off the table. Never gesture with cutlery.</span></li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Pillar 2 -->
+
+          <div class="pillar-card border-2 border-amber-200 rounded-2xl bg-white overflow-hidden shadow-sm">
+
+            <div class="p-5 sm:p-6 bg-[#faf8f5] flex items-center justify-between cursor-pointer" onclick="togglePillar(2)">
+
+              <div class="flex items-center gap-3">
+
+                <span class="w-8 h-8 rounded-lg bg-amber-500 text-white font-bold flex items-center justify-center text-sm">02</span>
+
+                <h4 class="text-lg sm:text-xl font-bold text-slate-900">Treating Waitstaff &amp; Servers</h4>
+
+              </div>
+
+              <i class="bi bi-chevron-down text-amber-700 text-lg transition-transform" id="pillarIcon2"></i>
+
+            </div>
+
+            <div class="p-6 border-t border-amber-100 hidden" id="pillarBody2">
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+
+                <div class="md:col-span-4 h-44 rounded-xl overflow-hidden border border-slate-200">
+
+                  <img src="img/wine_sommelier_service.jpg" alt="Waitstaff Demeanor" class="w-full h-full object-cover">
+
+                </div>
+
+                <div class="md:col-span-8">
+
+                  <p class="text-slate-700 text-base mb-3 leading-relaxed">
+
+                    Treatment of service staff demonstrates genuine character and emotional intelligence:
+
+                  </p>
+
+                  <ul class="space-y-2 text-slate-700 text-sm sm:text-base">
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Discreet Signals:</strong> Use eye contact or a slight hand lift. Never shout or snap fingers.</span></li>
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Quiet Problem-Solving:</strong> Address food or utensil issues privately with the server.</span></li>
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Executive Test:</strong> Recruiters and clients judge leadership by your courtesy to service staff.</span></li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Pillar 3 -->
+
+          <div class="pillar-card border-2 border-amber-200 rounded-2xl bg-white overflow-hidden shadow-sm">
+
+            <div class="p-5 sm:p-6 bg-[#faf8f5] flex items-center justify-between cursor-pointer" onclick="togglePillar(3)">
+
+              <div class="flex items-center gap-3">
+
+                <span class="w-8 h-8 rounded-lg bg-amber-500 text-white font-bold flex items-center justify-center text-sm">03</span>
+
+                <h4 class="text-lg sm:text-xl font-bold text-slate-900">Table Companions &amp; Social Harmony</h4>
+
+              </div>
+
+              <i class="bi bi-chevron-down text-amber-700 text-lg transition-transform" id="pillarIcon3"></i>
+
+            </div>
+
+            <div class="p-6 border-t border-amber-100 hidden" id="pillarBody3">
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+
+                <div class="md:col-span-4 h-44 rounded-xl overflow-hidden border border-slate-200">
+
+                  <img src="img/ferrazzi_networking_dinner.jpg" alt="Table Companions" class="w-full h-full object-cover">
+
+                </div>
+
+                <div class="md:col-span-8">
+
+                  <p class="text-slate-700 text-base mb-3 leading-relaxed">
+
+                    Respectful conduct and social harmony with table companions:
+
+                  </p>
+
+                  <ul class="space-y-2 text-slate-700 text-sm sm:text-base">
+
+                    <li class="flex items-start gap-2"><i class="bi bi-x-circle-fill text-rose-600 mt-0.5"></i> <span><strong>Taboo Topics:</strong> Avoid politics, religion, or polarizing arguments.</span></li>
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Pacing:</strong> Match the eating pace of companions; never start before the host.</span></li>
+
+                    <li class="flex items-start gap-2"><i class="bi bi-check-circle-fill text-amber-600 mt-0.5"></i> <span><strong>Moderation:</strong> Keep strict control over alcohol to protect executive presence.</span></li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    
+        <!-- Carreño Documentary / Masterclass Video Showcase -->
+                <!-- Carreño Documentary / Masterclass Video Showcase -->
+                <!-- Carreño Documentary / Masterclass Video Showcase -->
+        <div class="mt-16 pt-12 border-t border-amber-200" id="carreno-video-showcase">
+          <div class="text-center max-w-2xl mx-auto mb-8">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-amber-900 bg-amber-100 border border-amber-300 mb-2.5">
+              <i class="bi bi-play-circle-fill text-amber-600"></i> Executive Masterclass Video
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-bold font-display text-slate-900">
+              Carreño's Code in Modern Business Dining
+            </h3>
+            <p class="text-slate-600 text-sm sm:text-base mt-1.5">
+              An audiovisual exploration of Manuel Antonio Carreño's classical 1853 treatise and its strategic relevance in Fortune 500 sales dinners.
+            </p>
+          </div>
+
+          <!-- 16:9 Responsive Local HTML5 Video Player (Protected) -->
+          <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden border-2 border-amber-300 shadow-2xl bg-slate-950 p-2 sm:p-3.5 relative">
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-inner flex items-center justify-center">
+              <video 
+                controls 
+                controlsList="nodownload"
+                oncontextmenu="return false;"
+                playsinline 
+                preload="metadata"
+                poster="img/carreno_1853_salon.jpg"
+                class="w-full h-full object-contain rounded-2xl"
+                title="Executive Dining Etiquette - Carreño's Code">
+                <source src="docs/video/Executive%20Dining%20Etiquette%20-%20Carre%C3%B1o%27s%20Code.mp4" type="video/mp4">
+                <source src="docs/video/Executive%20Dining%20Etiquette%20-%20Carre%C3%B1o's%20Code.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+</div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       7. SECTION 4: CRISIS DECK - 3D AWKWARD DAMAGE CONTROL SCENARIOS
+
+       ========================================================================== -->
+
+  <section id="awkward-scenarios" class="py-24 bg-[#faf8f5] relative">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+
+      <div class="text-center max-w-3xl mx-auto mb-16">
+
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-rose-900 bg-rose-100 border border-rose-300 mb-3">
+
+          <i class="bi bi-shield-check text-base"></i> Crisis Damage Control
+
+        </span>
+
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-slate-900 tracking-tight">
+
+          Executive Damage Control Deck
+
+        </h2>
+
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+
+          Accidents happen in real dining rooms. Click any scenario card to flip it in 3D and reveal the master protocol and verbatim script.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- 6 3D Flip Cards Grid -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+
+        <!-- Card 1: Dropped Utensil -->
+
+        <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+
+          <div class="flip-card-inner">
+
+            <!-- Front -->
+
+            <div class="flip-card-front bg-white border-2 border-slate-200 p-7 flex flex-col justify-between shadow-lg">
+
+              <div>
+
+                <div class="relative h-48 rounded-2xl overflow-hidden mb-5">
+
+                  <img src="img/dropped_utensil_accident.jpg"
+
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80';"
+
+                    alt="Dropped Utensil" class="w-full h-full object-cover">
+
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-rose-600 text-white font-mono text-xs uppercase font-bold shadow">
+
+                    Incident #01
+
+                  </span>
+
+                </div>
+
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Utensil Drops on the Floor</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                  Your fork slips and clatters loudly on the restaurant floor mid-conversation.
+
+                </p>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-sm text-amber-700 font-bold">
+
+                <span>Click to reveal solution</span>
+
+                <i class="bi bi-arrow-repeat text-lg"></i>
+
+              </div>
+
+            </div>
+
+            <!-- Back -->
+
+            <div class="flip-card-back bg-[#fcfaf7] border-2 border-amber-400 p-7 flex flex-col justify-between shadow-xl">
+
+              <div>
+
+                <span class="text-xs sm:text-sm font-mono font-bold text-emerald-700 uppercase">Master Protocol</span>
+
+                <h4 class="text-xl font-bold text-slate-900 mt-1 mb-3">Leave It on the Floor</h4>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+
+                  Never duck under the table. Maintain upright posture, make calm eye contact with your server, and quietly request a fresh fork.
+
+                </p>
+
+                <div class="p-4 rounded-xl bg-white border border-amber-200 text-sm sm:text-base italic font-semibold text-amber-900 shadow-sm">
+
+                  "Pardon me, could I trouble you for a clean fork when you have a moment? Thank you."
+
+                </div>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-medium flex items-center justify-between">
+
+                <span>Focus stays 100% on client</span>
+
+                <i class="bi bi-arrow-counterclockwise text-amber-700 text-lg"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Card 2: Food in Teeth -->
+
+        <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+
+          <div class="flip-card-inner">
+
+            <!-- Front -->
+
+            <div class="flip-card-front bg-white border-2 border-slate-200 p-7 flex flex-col justify-between shadow-lg">
+
+              <div>
+
+                <div class="relative h-48 rounded-2xl overflow-hidden mb-5">
+
+                  <img src="img/discreet_table_whisper.jpg"
+
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80';"
+
+                    alt="Discreet Whisper" class="w-full h-full object-cover">
+
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-rose-600 text-white font-mono text-xs uppercase font-bold shadow">
+
+                    Incident #02
+
+                  </span>
+
+                </div>
+
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Food in Companion's Teeth</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                  You spot a noticeable speck of greens lodged in your client's front teeth during conversation.
+
+                </p>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-sm text-amber-700 font-bold">
+
+                <span>Click to reveal solution</span>
+
+                <i class="bi bi-arrow-repeat text-lg"></i>
+
+              </div>
+
+            </div>
+
+            <!-- Back -->
+
+            <div class="flip-card-back bg-[#fcfaf7] border-2 border-amber-400 p-7 flex flex-col justify-between shadow-xl">
+
+              <div>
+
+                <span class="text-xs sm:text-sm font-mono font-bold text-emerald-700 uppercase">Master Protocol</span>
+
+                <h4 class="text-xl font-bold text-slate-900 mt-1 mb-3">Discreet Mirror Opportunity</h4>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+
+                  Never embarrass them in public. Touch your own tooth subtly, or excuse yourself to the restroom giving them a natural moment to check.
+
+                </p>
+
+                <div class="p-4 rounded-xl bg-white border border-amber-200 text-sm sm:text-base italic font-semibold text-amber-900 shadow-sm">
+
+                  "Pardon me for just a brief moment, I'll be right back from the washroom."
+
+                </div>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-medium flex items-center justify-between">
+
+                <span>Protects dignity &amp; rapport</span>
+
+                <i class="bi bi-arrow-counterclockwise text-amber-700 text-lg"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Card 3: Spilled Wine -->
+
+        <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+
+          <div class="flip-card-inner">
+
+            <!-- Front -->
+
+            <div class="flip-card-front bg-white border-2 border-slate-200 p-7 flex flex-col justify-between shadow-lg">
+
+              <div>
+
+                <div class="relative h-48 rounded-2xl overflow-hidden mb-5">
+
+                  <img src="img/spilled_wine_accident.jpg"
+
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80';"
+
+                    alt="Spilled Wine" class="w-full h-full object-cover">
+
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-rose-600 text-white font-mono text-xs uppercase font-bold shadow">
+
+                    Incident #03
+
+                  </span>
+
+                </div>
+
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Spilled Water or Wine</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                  A gesture knocks a glasses glass, spilling liquid across the white linen tablecloth.
+
+                </p>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-sm text-amber-700 font-bold">
+
+                <span>Click to reveal solution</span>
+
+                <i class="bi bi-arrow-repeat text-lg"></i>
+
+              </div>
+
+            </div>
+
+            <!-- Back -->
+
+            <div class="flip-card-back bg-[#fcfaf7] border-2 border-amber-400 p-7 flex flex-col justify-between shadow-xl">
+
+              <div>
+
+                <span class="text-xs sm:text-sm font-mono font-bold text-emerald-700 uppercase">Master Protocol</span>
+
+                <h4 class="text-xl font-bold text-slate-900 mt-1 mb-3">Quiet Damming &amp; Pivot</h4>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+
+                  Right the glass calmly. Dab lightly with cloth napkin to prevent liquid reaching papers. Never scrub. Staff will overlay fresh cloth.
+
+                </p>
+
+                <div class="p-4 rounded-xl bg-white border border-amber-200 text-sm sm:text-base italic font-semibold text-amber-900 shadow-sm">
+
+                  "Please don't worry—accidents happen! Let's let the team handle it. Now, as you were saying..."
+
+                </div>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-medium flex items-center justify-between">
+
+                <span>Poise under unexpected crisis</span>
+
+                <i class="bi bi-arrow-counterclockwise text-amber-700 text-lg"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Card 4: Guest Insists on Paying -->
+
+        <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+
+          <div class="flip-card-inner">
+
+            <!-- Front -->
+
+            <div class="flip-card-front bg-white border-2 border-slate-200 p-7 flex flex-col justify-between shadow-lg">
+
+              <div>
+
+                <div class="relative h-48 rounded-2xl overflow-hidden mb-5">
+
+                  <img src="img/stealthy_bill_settlement.jpg" alt="Bill Settlement" class="w-full h-full object-cover">
+
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-rose-600 text-white font-mono text-xs uppercase font-bold shadow">
+
+                    Incident #04
+
+                  </span>
+
+                </div>
+
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Guest Grabs the Check</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                  You invited the client, but they insistently reach for the billfold with their corporate card.
+
+                </p>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-sm text-amber-700 font-bold">
+
+                <span>Click to reveal solution</span>
+
+                <i class="bi bi-arrow-repeat text-lg"></i>
+
+              </div>
+
+            </div>
+
+            <!-- Back -->
+
+            <div class="flip-card-back bg-[#fcfaf7] border-2 border-amber-400 p-7 flex flex-col justify-between shadow-xl">
+
+              <div>
+
+                <span class="text-xs sm:text-sm font-mono font-bold text-emerald-700 uppercase">Master Protocol</span>
+
+                <h4 class="text-xl font-bold text-slate-900 mt-1 mb-3">Two-Offer Dignified Rule</h4>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+
+                  Resist twice with professional warmth. If they remain adamant, yield gracefully rather than causing an unsightly public tug-of-war.
+
+                </p>
+
+                <div class="p-4 rounded-xl bg-white border border-amber-200 text-sm sm:text-base italic font-semibold text-amber-900 shadow-sm">
+
+                  "It was truly my absolute pleasure to host today. You can get the next one when we sign our milestone!"
+
+                </div>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-medium flex items-center justify-between">
+
+                <span>Zero tug-of-war at table</span>
+
+                <i class="bi bi-arrow-counterclockwise text-amber-700 text-lg"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Card 5: Declining Alcohol -->
+
+        <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+
+          <div class="flip-card-inner">
+
+            <!-- Front -->
+
+            <div class="flip-card-front bg-white border-2 border-slate-200 p-7 flex flex-col justify-between shadow-lg">
+
+              <div>
+
+                <div class="relative h-48 rounded-2xl overflow-hidden mb-5">
+
+                  <img src="img/declining_alcohol_toast.jpg"
+
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80';"
+
+                    alt="Declining Alcohol" class="w-full h-full object-cover">
+
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-rose-600 text-white font-mono text-xs uppercase font-bold shadow">
+
+                    Incident #05
+
+                  </span>
+
+                </div>
+
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Declining Alcohol Gracefully</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                  Your client orders expensive wine and urges you to partake, but you prefer not to drink.
+
+                </p>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-sm text-amber-700 font-bold">
+
+                <span>Click to reveal solution</span>
+
+                <i class="bi bi-arrow-repeat text-lg"></i>
+
+              </div>
+
+            </div>
+
+            <!-- Back -->
+
+            <div class="flip-card-back bg-[#fcfaf7] border-2 border-amber-400 p-7 flex flex-col justify-between shadow-xl">
+
+              <div>
+
+                <span class="text-xs sm:text-sm font-mono font-bold text-emerald-700 uppercase">Master Protocol</span>
+
+                <h4 class="text-xl font-bold text-slate-900 mt-1 mb-3">The Confident Substitute</h4>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+
+                  Order a sparkling water with lime with zero apology. Raise your glass naturally during toasts; sipping is always voluntary. Never turn your wine glass upside down!
+
+                </p>
+
+                <div class="p-4 rounded-xl bg-white border border-amber-200 text-sm sm:text-base italic font-semibold text-amber-900 shadow-sm">
+
+                  "I'll have sparkling water with fresh lime tonight, but please go ahead with the reserve wine!"
+
+                </div>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-medium flex items-center justify-between">
+
+                <span>Never lecture or invert glasses</span>
+
+                <i class="bi bi-arrow-counterclockwise text-amber-700 text-lg"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Card 6: Urgent Call -->
+
+        <div class="flip-card cursor-pointer" onclick="toggleFlip(this)">
+
+          <div class="flip-card-inner">
+
+            <!-- Front -->
+
+            <div class="flip-card-front bg-white border-2 border-slate-200 p-7 flex flex-col justify-between shadow-lg">
+
+              <div>
+
+                <div class="relative h-48 rounded-2xl overflow-hidden mb-5">
+
+                  <img src="img/smartphone_face_down.jpg"
+
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80';"
+
+                    alt="Smartphone on Table" class="w-full h-full object-cover">
+
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-md bg-rose-600 text-white font-mono text-xs uppercase font-bold shadow">
+
+                    Incident #06
+
+                  </span>
+
+                </div>
+
+                <h4 class="text-xl font-bold text-slate-900 mb-2">Urgent Incoming Call</h4>
+
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+                  Your phone vibrates with an emergency from headquarters right in the middle of dinner.
+
+                </p>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-sm text-amber-700 font-bold">
+
+                <span>Click to reveal solution</span>
+
+                <i class="bi bi-arrow-repeat text-lg"></i>
+
+              </div>
+
+            </div>
+
+            <!-- Back -->
+
+            <div class="flip-card-back bg-[#fcfaf7] border-2 border-amber-400 p-7 flex flex-col justify-between shadow-xl">
+
+              <div>
+
+                <span class="text-xs sm:text-sm font-mono font-bold text-emerald-700 uppercase">Master Protocol</span>
+
+                <h4 class="text-xl font-bold text-slate-900 mt-1 mb-3">The 90-Second Step-Out</h4>
+
+                <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+
+                  Never answer at the table. Place your napkin on your chair seat, excuse yourself politely, and step into the lobby. Resolve in under 90 seconds.
+
+                </p>
+
+                <div class="p-4 rounded-xl bg-white border border-amber-200 text-sm sm:text-base italic font-semibold text-amber-900 shadow-sm">
+
+                  "Pardon me, please continue enjoying the salad while I handle an urgent 1-minute matter. I'll be right back."
+
+                </div>
+
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-500 font-medium flex items-center justify-between">
+
+                <span>Napkin on chair, never table</span>
+
+                <i class="bi bi-arrow-counterclockwise text-amber-700 text-lg"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       8. SECTION 5: THE REAL-TIME BUSINESS MEAL SIMULATOR
+
+       ========================================================================== -->
+
+  <section id="simulator" class="parallax-section parallax-dealmaker py-16 sm:py-20 px-4 border-y-2 border-amber-300 relative">
+
+    <div class="max-w-6xl mx-auto relative z-10">
+
+
+
+      <!-- Simulator Header Title (Compact) -->
+
+      <div class="text-center mb-8">
+
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-widest text-emerald-900 bg-emerald-100 border border-emerald-400 shadow-sm">
+
+          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
+
+          Live Simulation &bull; Deal Value: $2,400,000
+
+        </span>
+
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-display text-slate-900 mt-2 tracking-tight">
+
+          The Dealmaker's Table: Live Simulation
+
+        </h2>
+
+        <p class="text-slate-700 text-sm sm:text-base max-w-xl mx-auto mt-1 leading-relaxed">
+
+          Host <strong>Victoria Sterling</strong> (VP Global Procurement). Your dining etiquette will decide the $2.4M multi-year contract.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- Main Simulator HUD Console (2-Column Screen View at 100% zoom) -->
+
+      <div class="rounded-3xl bg-white border-2 border-amber-300 shadow-2xl overflow-hidden">
+
+        <div class="p-5 sm:p-7" id="simStageContainer">
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+
+
+            <!-- LEFT COLUMN: Client Card + Dialogue + Live HUD Metrics -->
+
+            <div class="lg:col-span-5 flex flex-col gap-4 bg-[#faf8f5] p-5 rounded-2xl border-2 border-amber-200 shadow-sm">
+
+              <!-- Act & Stage Badge -->
+
+              <div class="flex items-center justify-between pb-2.5 border-b border-amber-200/80">
+
+                <span id="simActTitle" class="text-xs sm:text-sm font-mono text-amber-900 uppercase font-bold tracking-wider">Act 1: The Seating &amp; Arrival</span>
+
+                <span id="simStepCounter" class="text-xs font-mono font-bold text-slate-600 bg-white px-2.5 py-0.5 rounded-md border border-slate-200 shadow-xs">Stage 1 of 5</span>
+
+              </div>
+
+
+
+              <!-- Client Portrait & Dialogue Row -->
+
+              <div class="flex items-center gap-4">
+
+                <div class="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-md flex-shrink-0">
+
+                  <img id="simAvatarImg"
+
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+
+                    alt="Victoria Sterling" class="w-full h-full object-cover">
+
+                  <div id="simMoodBadge" class="absolute bottom-0 inset-x-0 py-0.5 bg-white/95 text-[10px] font-mono font-bold text-amber-900 text-center border-t border-amber-200">
+
+                    NEUTRAL
+
+                  </div>
+
+                </div>
+
+                <div>
+
+                  <h4 class="text-slate-900 font-extrabold text-base leading-tight">Victoria Sterling</h4>
+
+                  <p class="text-xs text-slate-500 font-mono font-semibold mb-2">VP Global Procurement</p>
+
+                  <span id="simRankBadge" class="px-3 py-1 rounded-full text-xs font-bold font-mono bg-blue-100 text-blue-900 border border-blue-300">
+
+                    Evaluating...
+
+                  </span>
+
+                </div>
+
+              </div>
+
+
+
+              <!-- Dialogue Speech Bubble -->
+
+              <div class="rounded-xl bg-white border border-amber-200 p-3.5 shadow-xs">
+
+                <p id="simDialogueText" class="text-slate-800 text-sm sm:text-base leading-relaxed italic font-medium">
+
+                  "Good evening. Thank you for inviting me to dinner. Our engineering team loves your technical specs, but this contract is high-risk. Shall we sit down?"
+
+                </p>
+
+              </div>
+
+
+
+              <!-- Live HUD Metrics in Left Column -->
+
+              <div class="space-y-2.5 pt-1 border-t border-amber-200/80">
+
+                <!-- Trust Meter -->
+
+                <div>
+
+                  <div class="flex items-center justify-between text-xs mb-1 font-bold">
+
+                    <span class="text-slate-600 uppercase font-mono">Executive Trust</span>
+
+                    <span id="simTrustVal" class="text-amber-800 font-mono font-extrabold text-xs">60%</span>
+
+                  </div>
+
+                  <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden border border-slate-300">
+
+                    <div id="simTrustBar" class="bg-gradient-to-r from-amber-500 to-amber-600 h-full rounded-full transition-all duration-500" style="width: 60%;"></div>
+
+                  </div>
+
+                </div>
+
+
+
+                <!-- Deal Probability -->
+
+                <div>
+
+                  <div class="flex items-center justify-between text-xs mb-1 font-bold">
+
+                    <span class="text-slate-600 uppercase font-mono">Deal Probability</span>
+
+                    <span id="simProbVal" class="text-emerald-800 font-mono font-extrabold text-xs">50%</span>
+
+                  </div>
+
+                  <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden border border-slate-300">
+
+                    <div id="simProbBar" class="bg-gradient-to-r from-emerald-500 to-teal-600 h-full rounded-full transition-all duration-500" style="width: 50%;"></div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+            </div>
+
+
+
+            <!-- RIGHT COLUMN: Prompt, Options & Feedback -->
+
+            <div class="lg:col-span-7 flex flex-col justify-between h-full">
+
+
+
+              <!-- Dilemma Prompt Area -->
+
+              <div id="simDilemmaArea">
+
+                <h5 id="simPromptHeading" class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-800 font-mono mb-3 flex items-center gap-2">
+
+                  <i class="bi bi-question-circle-fill text-amber-600 text-base"></i> Your Executive Move:
+
+                </h5>
+
+
+
+                <!-- Options Buttons Container -->
+
+                <div id="simOptionsContainer" class="space-y-2.5">
+
+                  <!-- Populated dynamically by JS -->
+
+                </div>
+
+              </div>
+
+
+
+              <!-- Feedback Area -->
+
+              <div id="simFeedbackArea" class="hidden mt-3 rounded-xl p-4 border text-sm transition-all duration-300">
+
+                <!-- Populated dynamically by JS -->
+
+              </div>
+
+
+
+              <!-- Action Controls -->
+
+              <div class="mt-5 pt-3.5 border-t border-slate-200 flex items-center justify-between gap-3">
+
+                <button id="simResetBtn" type="button" onclick="resetSimulation()" class="px-4 py-2 rounded-xl text-xs font-mono font-bold text-slate-700 hover:text-slate-950 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-colors">
+
+                  <i class="bi bi-arrow-counterclockwise mr-1"></i> Restart
+
+                </button>
+
+                <button id="simNextBtn" type="button" onclick="advanceSimulation()" disabled class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-amber-600 hover:bg-amber-500 disabled:opacity-40 disabled:pointer-events-none transition-all shadow-md">
+
+                  Next Act <i class="bi bi-arrow-right ml-1"></i>
+
+                </button>
+
+              </div>
+
+
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       9. SECTION 6: STUDENT FEEDBACK SURVEY
+
+       ========================================================================== -->
+
+  <section id="survey" class="py-12 sm:py-16 bg-[#faf8f5] relative border-b border-amber-200 scroll-mt-20 overflow-hidden">
+    <!-- Ambient decorative light glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[320px] bg-gradient-to-r from-amber-200/25 via-amber-300/15 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <!-- Polished Executive Card with Gentle Amber Accents -->
+      <div class="survey-card bg-white/95 rounded-3xl border-2 border-amber-200/90 p-6 sm:p-9 shadow-xl shadow-amber-900/5 relative backdrop-blur-sm overflow-hidden">
+        
+        <!-- Subtle Corner Flairs -->
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-amber-300/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <!-- Header -->
+        <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5 relative z-10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-300 text-amber-800 flex items-center justify-center text-lg shadow-sm flex-shrink-0">
+              <i class="bi bi-star-fill text-amber-600"></i>
+            </div>
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 font-display tracking-tight leading-tight">
+                Dining Readiness Survey
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                Rate your learning &amp; confidence from 1 (Low) to 5 (High)
+              </p>
+            </div>
+          </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-mono font-bold text-amber-900 shadow-xs" id="surveyCounterText">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> 1 of 8
+          </div>
+        </div>
+
+        <!-- Animated Progress Bar -->
+        <div class="w-full bg-slate-100 rounded-full h-2 mb-6 overflow-hidden p-0.5 border border-slate-100">
+          <div class="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 h-full rounded-full transition-all duration-500 ease-out shadow-xs" id="surveyProgressBar" style="width: 12.5%;"></div>
+        </div>
+
+        <!-- Question View with Smooth Transitions -->
+        <div id="surveyQuestionCard" class="relative z-10">
+          <div id="surveyQuestionContent">
+            <h4 class="text-base sm:text-lg font-semibold text-slate-900 mb-5 leading-relaxed min-h-[3.2rem] flex items-center" id="surveyQuestionTitle">
+              1. How much did you learn about Carreño's classical etiquette rules and their modern business relevance?
+            </h4>
+
+            <!-- 1 to 5 Rating Buttons with Micro-Decorations -->
+            <div class="grid grid-cols-5 gap-2 sm:gap-3 mb-4" id="surveyScaleGroup">
+              <!-- Rendered dynamically by JS with smooth scale and highlight -->
+            </div>
+
+            <!-- Subtle Scale Guide -->
+            <div class="flex justify-between items-center text-[11px] font-medium text-slate-400 px-1 mb-4">
+              <span class="flex items-center gap-1"><i class="bi bi-dash-circle text-rose-500"></i> 1 = Very Low</span>
+              <span class="text-slate-400 italic hidden sm:inline text-[10px]">Tap your rating</span>
+              <span class="flex items-center gap-1"><i class="bi bi-plus-circle text-emerald-600"></i> 5 = Very High</span>
+            </div>
+
+            <!-- Dynamic Selected Rating Badge -->
+            <div id="surveyFeedbackBadge" class="hidden py-2 px-3.5 rounded-xl border mb-5 text-xs flex items-center justify-between transition-all duration-300 bg-amber-50/90 border-amber-200/90 text-amber-950 shadow-xs">
+              <!-- Dynamic feedback label -->
+            </div>
+          </div>
+
+          <!-- Bottom Navigation Controls -->
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <button type="button" id="surveyPrevBtn" onclick="prevSurveyQuestion()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-100 disabled:opacity-30 disabled:pointer-events-none transition-all flex items-center gap-1.5">
+              <i class="bi bi-arrow-left"></i> Previous
+            </button>
+            <button type="button" id="surveyNextBtn" onclick="nextSurveyQuestion()" class="px-6 py-2.5 text-xs font-bold text-slate-900 bg-amber-400 hover:bg-amber-300 hover:shadow-md rounded-xl shadow-xs disabled:opacity-30 disabled:pointer-events-none transition-all flex items-center gap-1.5">
+              Next <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Clean Animated Completion Screen -->
+        <div id="surveyFinishScreen" class="hidden text-center py-6 relative z-10">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-200 border-2 border-amber-300 text-amber-700 flex items-center justify-center text-3xl mx-auto mb-3 shadow-md">
+            <i class="bi bi-award-fill text-amber-600"></i>
+          </div>
+          <h3 class="text-2xl font-bold font-display text-slate-900 mb-1">Assessment Complete!</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mb-4">Your overall dining readiness score:</p>
+          
+          <div class="text-4xl sm:text-5xl font-black text-amber-700 font-mono mb-2" id="surveyFinalAvgDisplay">4.8 / 5.0</div>
+          <p class="text-xs sm:text-sm text-amber-900 bg-amber-100 border border-amber-300 px-4 py-1.5 rounded-full inline-block font-semibold mb-6 shadow-xs" id="surveyReadinessBadge">
+            Great job! You are ready for high-stakes business meals.
+          </p>
+          <br>
+          <button type="button" onclick="restartSurvey()" class="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-slate-900 bg-amber-400 hover:bg-amber-300 rounded-xl transition-all shadow-md">
+            <i class="bi bi-arrow-counterclockwise mr-1.5"></i> Retake Survey
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       10. SECTION 7: THE EXECUTIVE VAULT & REFERENCES
+
+       ========================================================================== -->
+
+  <section id="references" class="py-24 bg-[#faf8f5] relative">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+
+      <div class="text-center max-w-3xl mx-auto mb-16">
+
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-900 bg-blue-100 border border-blue-300 mb-3">
+
+          <i class="bi bi-journals text-base"></i> Academic Rigor &amp; Treatises
+
+        </span>
+
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-slate-900 tracking-tight">
+
+          The Executive Vault &amp; Citations
+
+        </h2>
+
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+
+          Original primary sources, academic textbooks, and peer-reviewed sales literature supporting this curriculum.
+
+        </p>
+
+      </div>
+
+
+
+      <!-- 6 Reference Books Grid -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+
+
+        <!-- Volume 1: Carreño 1853 -->
+
+        <div class="p-7 rounded-3xl bg-white border-2 border-amber-200 flex flex-col justify-between shadow-md tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-3.5">
+
+              <span class="px-3 py-1 rounded bg-amber-100 text-amber-900 font-mono text-xs font-bold border border-amber-300">1853 CLASSICAL</span>
+
+              <i class="bi bi-book-half text-amber-700 text-xl"></i>
+
+            </div>
+
+            <h4 class="font-serif font-bold text-slate-900 text-lg mb-2">Manual de Urbanidad y Buenas Costumbres</h4>
+
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+              Manuel Antonio Carreño. The classical standard defining tabletop dignity, respect for servers, and civility among dining companions.
+
+            </p>
+
+          </div>
+
+          <a href="downloads/Carreno_1853_Manual_de_Urbanidad.pdf" target="_blank" rel="noopener noreferrer" class="mt-5 py-2.5 px-4 rounded-xl border-2 border-amber-400 hover:bg-amber-50 text-amber-900 text-sm font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+
+            <i class="bi bi-box-arrow-up-right"></i> Open Full PDF (9.5 MB)
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Volume 2: Chaney & Martin 2007 -->
+
+        <div class="p-7 rounded-3xl bg-white border-2 border-slate-200 flex flex-col justify-between shadow-md tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-3.5">
+
+              <span class="px-3 py-1 rounded bg-blue-100 text-blue-900 font-mono text-xs font-bold border border-blue-300">ACADEMIC TEXT</span>
+
+              <i class="bi bi-book-half text-blue-700 text-xl"></i>
+
+            </div>
+
+            <h4 class="font-display font-bold text-slate-900 text-lg mb-2">The Essential Guide to Business Etiquette</h4>
+
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+              Lillian H. Chaney &amp; Jeanette S. Martin (Praeger). Rigorous academic protocols on executive dining, seating hierarchy, and international meal customs.
+
+            </p>
+
+          </div>
+
+          <a href="downloads/Chaney_Martin_2007_Business_Etiquette.pdf" target="_blank" rel="noopener noreferrer" class="mt-5 py-2.5 px-4 rounded-xl border-2 border-slate-300 hover:bg-slate-50 text-slate-800 text-sm font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+
+            <i class="bi bi-box-arrow-up-right"></i> Open Textbook (912 KB)
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Volume 3: Keith Ferrazzi 2005 -->
+
+        <div class="p-7 rounded-3xl bg-white border-2 border-slate-200 flex flex-col justify-between shadow-md tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-3.5">
+
+              <span class="px-3 py-1 rounded bg-emerald-100 text-emerald-900 font-mono text-xs font-bold border border-emerald-300">B2B STRATEGY</span>
+
+              <i class="bi bi-book-half text-emerald-700 text-xl"></i>
+
+            </div>
+
+            <h4 class="font-display font-bold text-slate-900 text-lg mb-2">Never Eat Alone: Secrets to Success</h4>
+
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+              Keith Ferrazzi (Crown Business). Transforming the meal table into genuine relationship capital, deal architecture, and mutual value.
+
+            </p>
+
+          </div>
+
+          <a href="downloads/Ferrazzi_2005_Never_Eat_Alone.pdf" target="_blank" rel="noopener noreferrer" class="mt-5 py-2.5 px-4 rounded-xl border-2 border-slate-300 hover:bg-slate-50 text-slate-800 text-sm font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+
+            <i class="bi bi-box-arrow-up-right"></i> Open Monograph (1.1 MB)
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Volume 4: Business Management Daily -->
+
+        <div class="p-7 rounded-3xl bg-white border-2 border-slate-200 flex flex-col justify-between shadow-md tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-3.5">
+
+              <span class="px-3 py-1 rounded bg-rose-100 text-rose-900 font-mono text-xs font-bold border border-rose-300">COURSE LINK</span>
+
+              <i class="bi bi-box-arrow-up-right text-rose-700 text-xl"></i>
+
+            </div>
+
+            <h4 class="font-display font-bold text-slate-900 text-lg mb-2">14 Tips on Business Etiquette</h4>
+
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+              Business Management Daily (2018). Setting corporate standards, Robin Jay's client lunch rules, and managing awkward dining dilemmas.
+
+            </p>
+
+          </div>
+
+          <a href="https://training.businessmanagementdaily.com/3013/14-tips-on-business-etiquette/" target="_blank" rel="noopener noreferrer"
+
+            class="mt-5 py-2.5 px-4 rounded-xl border-2 border-slate-300 hover:bg-slate-50 text-slate-800 text-sm font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+
+            <i class="bi bi-box-arrow-up-right"></i> Course Resource
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Volume 5: Schweitzer & Dybis -->
+
+        <div class="p-7 rounded-3xl bg-white border-2 border-slate-200 flex flex-col justify-between shadow-md tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-3.5">
+
+              <span class="px-3 py-1 rounded bg-cyan-100 text-cyan-900 font-mono text-xs font-bold border border-cyan-300">ARTICLE</span>
+
+              <i class="bi bi-box-arrow-up-right text-cyan-700 text-xl"></i>
+
+            </div>
+
+            <h4 class="font-display font-bold text-slate-900 text-lg mb-2">5 Ways to Impress Your Dining Companion</h4>
+
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+              Schweitzer &amp; Dybis (Corp! Magazine). Silent table cues, server signals, safe entrée ordering, and guest behavioral poise.
+
+            </p>
+
+          </div>
+
+          <a href="https://www.corpmagazine.com/break-room/inspiration/5-ways-to-impress-your-dining-companion-during-a-dinner-business-meeting/" target="_blank" rel="noopener noreferrer"
+
+            class="mt-5 py-2.5 px-4 rounded-xl border-2 border-slate-300 hover:bg-slate-50 text-slate-800 text-sm font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+
+            <i class="bi bi-box-arrow-up-right"></i> Corp! Magazine
+
+          </a>
+
+        </div>
+
+
+
+        <!-- Volume 6: OpenTable Corporate -->
+
+        <div class="p-7 rounded-3xl bg-white border-2 border-slate-200 flex flex-col justify-between shadow-md tilt-card" data-tilt="true">
+
+          <div>
+
+            <div class="flex items-center justify-between mb-3.5">
+
+              <span class="px-3 py-1 rounded bg-purple-100 text-purple-900 font-mono text-xs font-bold border border-purple-300">VENUE PORTAL</span>
+
+              <i class="bi bi-box-arrow-up-right text-purple-700 text-xl"></i>
+
+            </div>
+
+            <h4 class="font-display font-bold text-slate-900 text-lg mb-2">Corporate Dining Network &amp; Protocol</h4>
+
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+
+              OpenTable Corporate Network (2026). Vetting quiet executive tables, pre-screening wine lists, and securing verified client reservations.
+
+            </p>
+
+          </div>
+
+          <a href="https://www.opentable.com" target="_blank" rel="noopener noreferrer"
+
+            class="mt-5 py-2.5 px-4 rounded-xl border-2 border-slate-300 hover:bg-slate-50 text-slate-800 text-sm font-mono font-bold flex items-center justify-center gap-2 transition-colors">
+
+            <i class="bi bi-box-arrow-up-right"></i> OpenTable Corporate
+
+          </a>
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==========================================================================
+
+       11. LUXURY FOOTER
+
+       ========================================================================== -->
+
+  <footer class="bg-white border-t-2 border-amber-200 py-16 px-4">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+
+
+
+      <div class="md:col-span-6 space-y-3.5">
+
+        <div class="flex items-center gap-3">
+
+          <div class="w-10 h-10 rounded-xl bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 shadow-sm">
+
+            <i class="bi bi-cup-hot-fill text-lg"></i>
+
+          </div>
+
+          <span class="text-lg font-extrabold font-display text-slate-900 tracking-wider uppercase">
+
+            EXECUTIVE DINING ETIQUETTE
+
+          </span>
+
+        </div>
+
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-md">
+
+          Academic project developed for <strong>SIE 415-515 Technical Sales &amp; Marketing</strong>. Engineered to equip engineering and business students with poise, emotional intelligence, and executive dining competence.
+
+        </p>
+
+        <div class="text-xs sm:text-sm font-mono text-slate-500 font-medium">
+
+          Course: SIE 415-515 &bull; Andre Velazco &bull; Instructor: Prof. Jesus
+
+        </div>
+
+      </div>
+
+
+
+      <div class="md:col-span-3 space-y-2.5">
+
+        <h5 class="text-sm font-mono uppercase tracking-wider text-amber-900 font-bold">Quick Navigation</h5>
+
+        <ul class="space-y-2 text-sm sm:text-base text-slate-600">
+
+          <li><a href="#foundations" class="hover:text-amber-700 transition-colors">3-Phase Strategic Protocol</a></li>
+
+          <li><a href="#table-anatomy" class="hover:text-amber-700 transition-colors">Place Setting Anatomy (BMW)</a></li>
+
+          <li><a href="#carreno-rules" class="hover:text-amber-700 transition-colors">Carreño's Classical Code (1853)</a></li>
+
+          <li><a href="#awkward-scenarios" class="hover:text-amber-700 transition-colors">Awkward Scenarios Damage Control</a></li>
+
+          <li><a href="#simulator" class="hover:text-amber-700 transition-colors">Live Dealmaker Simulator</a></li>
+
+          <li><a href="#references" class="hover:text-amber-700 transition-colors">Archival Vault &amp; Citations</a></li>
+
+        </ul>
+
+      </div>
+
+
+
+      <div class="md:col-span-3 space-y-2.5">
+
+        <h5 class="text-sm font-mono uppercase tracking-wider text-amber-900 font-bold">Academic Submission</h5>
+
+        <div class="p-5 rounded-2xl bg-[#faf8f5] border border-amber-200 text-sm sm:text-base text-slate-700 space-y-1.5 shadow-sm">
+
+          <div><strong class="text-slate-900">Author:</strong> Andre Velazco</div>
+
+          <div><strong class="text-slate-900">Role:</strong> Industrial Engineering Candidate</div>
+
+          <div><strong class="text-slate-900">Assignment:</strong> Homework 4 - Dining Website</div>
+
+          <div><strong class="text-slate-900">Year:</strong> 2026 Academic Term</div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <div class="max-w-7xl mx-auto pt-10 mt-10 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 gap-4">
+
+      <div>&copy; 2026 Andre Velazco &bull; Technical Sales &amp; Marketing (SIE 415-515). All rights reserved.</div>
+
+      <a href="#overview" class="text-amber-700 hover:text-amber-800 font-bold flex items-center gap-1.5">
+
+        Back to Top <i class="bi bi-arrow-up-circle text-base"></i>
+
+      </a>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- ==========================================================================
+
+       12. POCKET CHEAT-SHEET MODAL (PRINT & QUICK REVIEW)
+
+       ========================================================================== -->
+
+  <div id="pocketModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+
+    <div class="bg-white border-2 border-amber-300 rounded-3xl max-w-3xl w-full p-6 sm:p-9 max-h-[90vh] overflow-y-auto shadow-2xl">
+
+      <div class="flex items-center justify-between pb-5 border-b border-slate-200 mb-6">
+
+        <div>
+
+          <span class="px-3 py-1 rounded bg-amber-100 text-amber-900 font-mono text-xs font-bold border border-amber-300">EXECUTIVE WALLET CARD</span>
+
+          <h3 class="text-2xl sm:text-3xl font-bold font-display text-slate-900 mt-1">Dining Etiquette Pocket Cheat-Sheet</h3>
+
+        </div>
+
+        <button onclick="closePocketModal()" class="text-slate-400 hover:text-slate-800 text-3xl p-2">&times;</button>
+
+      </div>
+
+
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm sm:text-base text-slate-700 mb-6">
+
+        <div class="p-5 rounded-2xl bg-[#faf8f5] border border-amber-200 shadow-sm">
+
+          <h4 class="font-bold text-amber-800 uppercase text-sm mb-2.5">1. The BMW Table Rule</h4>
+
+          <p class="mb-1"><strong>B = Bread</strong> (Left plate, tear bite by bite).</p>
+
+          <p class="mb-1"><strong>M = Meal</strong> (Center charger plate).</p>
+
+          <p><strong>W = Water / Wine</strong> (Right side glasses).</p>
+
+        </div>
+
+
+
+        <div class="p-4 rounded-xl bg-[#faf8f5] border border-blue-200 shadow-sm">
+
+          <h4 class="font-bold text-blue-800 uppercase text-sm mb-2.5">2. Carreño's Cardinal Laws</h4>
+
+          <p class="mb-1">&bull; 0 phones or keys resting on the table.</p>
+
+          <p class="mb-1">&bull; Polite eye contact with staff; zero finger snapping.</p>
+
+          <p>&bull; Never eat before the host lifts their fork.</p>
+
+        </div>
+
+
+
+        <div class="p-5 rounded-2xl bg-[#faf8f5] border border-emerald-200 shadow-sm">
+
+          <h4 class="font-bold text-emerald-800 uppercase text-sm mb-2.5">3. Utensil Mechanics</h4>
+
+          <p class="mb-1">&bull; Use utensils strictly from the outside-in.</p>
+
+          <p class="mb-1">&bull; Resting: Fork tines down, knife crossed (Continental).</p>
+
+          <p>&bull; Finished: Fork and knife at 4:20 clock angle.</p>
+
+        </div>
+
+
+
+        <div class="p-5 rounded-2xl bg-[#faf8f5] border border-rose-200 shadow-sm">
+
+          <h4 class="font-bold text-rose-800 uppercase text-sm mb-2.5">4. Settlement &amp; Crises</h4>
+
+          <p class="mb-1">&bull; Host covers 100% with card on file.</p>
+
+          <p class="mb-1">&bull; Dropped fork? Leave on floor; quietly request clean one.</p>
+
+          <p>&bull; Spilled drink? Dab lightly, never scrub; signal server.</p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="flex items-center justify-between pt-5 border-t border-slate-200">
+
+        <button onclick="window.print()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-white font-bold text-sm flex items-center gap-2 shadow-md">
+
+          <i class="bi bi-printer-fill"></i> Print / Save PDF
+
+        </button>
+
+        <button onclick="closePocketModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-sm">
+
+          Close
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==========================================================================
+
+       13. INTERACTIVE LOGIC (SIMULATOR, HOTSPOTS, SOUND GENERATOR, FILTERS)
+
+       ========================================================================== -->
+
+  <script>
+
+    /* ==========================================================================
+
+       A. READING PROGRESS BAR
+
+       ========================================================================== */
+
+    window.addEventListener('scroll', () => {
+
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+      const scrolled = (winScroll / height) * 100;
+
+      const bar = document.getElementById('readingProgressBar');
+
+      if (bar) bar.style.width = scrolled + '%';
+
+    });
+
+
+
+    /* ==========================================================================
+
+       B. MOBILE MENU TOGGLE
+
+       ========================================================================== */
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    function toggleMobileMenu() {
+
+      if (mobileDrawer) mobileDrawer.classList.toggle('hidden');
+
+    }
+
+    if (mobileMenuBtn) {
+
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    }
+
+
+
+    /* ==========================================================================
+
+       C. POCKET MODAL CONTROLS
+
+       ========================================================================== */
+
+    function openPocketModal() {
+
+      document.getElementById('pocketModal')?.classList.remove('hidden');
+
+    }
+
+    function closePocketModal() {
+
+      document.getElementById('pocketModal')?.classList.add('hidden');
+
+    }
+
+
+
+    /* ==========================================================================
+
+       D. 3D FLIP CARD INTERACTION
+
+       ========================================================================== */
+
+    function toggleFlip(cardEl) {
+
+      cardEl.classList.toggle('is-flipped');
+
+    }
+
+
+
+    /* ==========================================================================
+
+       E. CULINARY MATRIX FILTER
+
+       ========================================================================== */
+
+    
+
+    /* ==========================================================================
+
+       CARREÑO 3 PILLARS ACCORDION TOGGLE
+
+       ========================================================================== */
+
+    function togglePillar(num) {
+
+      for (let i = 1; i <= 3; i++) {
+
+        const body = document.getElementById(`pillarBody${i}`);
+
+        const icon = document.getElementById(`pillarIcon${i}`);
+
+        const card = body?.closest('.pillar-card');
+
+        if (i === num) {
+
+          const isHidden = body?.classList.contains('hidden');
+
+          if (isHidden) {
+
+            body?.classList.remove('hidden');
+
+            if (icon) icon.className = "bi bi-chevron-up text-amber-700 text-lg transition-transform";
+
+            if (card) {
+
+              card.className = "pillar-card border-2 border-amber-300 rounded-2xl bg-white overflow-hidden shadow-md";
+
+            }
+
+          } else {
+
+            body?.classList.add('hidden');
+
+            if (icon) icon.className = "bi bi-chevron-down text-amber-700 text-lg transition-transform";
+
+            if (card) {
+
+              card.className = "pillar-card border-2 border-amber-200 rounded-2xl bg-white overflow-hidden shadow-sm";
+
+            }
+
+          }
+
+        } else {
+
+          body?.classList.add('hidden');
+
+          if (icon) icon.className = "bi bi-chevron-down text-amber-700 text-lg transition-transform";
+
+          if (card) {
+
+            card.className = "pillar-card border-2 border-amber-200 rounded-2xl bg-white overflow-hidden shadow-sm";
+
+          }
+
+        }
+
+      }
+
+    }
+
+
+
+    function filterDishes(category) {
+
+      const cards = document.querySelectorAll('.culinary-card');
+
+      const btnAll = document.getElementById('filterBtnAll');
+
+      const btnSafe = document.getElementById('filterBtnSafe');
+
+      const btnRisky = document.getElementById('filterBtnRisky');
+
+
+
+      if (btnAll && btnSafe && btnRisky) {
+
+        [btnAll, btnSafe, btnRisky].forEach(b => {
+
+          b.className = "px-5 py-2 text-sm font-semibold rounded-xl text-slate-700 hover:text-slate-900 transition-all";
+
+        });
+
+
+
+        if (category === 'all') {
+
+          btnAll.className = "px-5 py-2 text-sm font-bold rounded-xl bg-amber-500 text-white shadow-md transition-all";
+
+        } else if (category === 'safe') {
+
+          btnSafe.className = "px-5 py-2 text-sm font-bold rounded-xl bg-emerald-600 text-white shadow-md transition-all";
+
+        } else {
+
+          btnRisky.className = "px-5 py-2 text-sm font-bold rounded-xl bg-rose-600 text-white shadow-md transition-all";
+
+        }
+
+      }
+
+
+
+      cards.forEach(c => {
+
+        const show = (category === 'all') ||
+
+                     (category === 'safe' && c.classList.contains('safe-card')) ||
+
+                     (category === 'risky' && c.classList.contains('risky-card'));
+
+        c.style.display = show ? 'flex' : 'none';
+
+      });
+
+    }
+
+
+
+    /* ==========================================================================
+
+       F. TABLE ANATOMY HOTSPOT INSPECTOR DATA & FUNCTION
+
+       ========================================================================== */
+
+    const tableElements = {
+
+      'bread-plate': {
+
+        tag: 'BMW: Left Anchor',
+
+        title: 'Bread & Butter Plate (BMW: "B")',
+
+        desc: 'Located strictly on your left side. Holds your bread roll and butter spreader. Tear bite-sized pieces with fingers; never butter the whole roll with a knife like a sandwich.',
+
+        rule: 'Break off a single mouthful of bread, apply butter to that specific piece only, then consume.'
+
+      },
+
+      'salad-fork': {
+
+        tag: 'Cutlery: Left Progression',
+
+        title: 'Salad & Dinner Forks',
+
+        desc: 'Arranged from outside-in. The outer fork is for the first course (salad or appetizer), while the inner heavier fork is reserved for the main course entrée.',
+
+        rule: 'Always work from the outermost fork inward. Never switch hands back and forth if using Continental style.'
+
+      },
+
+      'charger-plate': {
+
+        tag: 'Center Anchor (Meal)',
+
+        title: 'Charger & Service Plate (BMW: "M")',
+
+        desc: 'The central centerpiece anchor. Courses rest on top of this plate to protect pristine table linens until the main course is served.',
+
+        rule: 'Always wait for the host to lift their fork before eating. Pacing should match the slowest companion.'
+
+      },
+
+      'dessert-utensils': {
+
+        tag: 'Top Table Horizontal',
+
+        title: 'Dessert Spoon & Fork',
+
+        desc: 'Positioned above the charger. The spoon points to the left, and the fork points to the right. Staff slides them down when dessert arrives.',
+
+        rule: 'Do not use dessert utensils for soup or salad courses. They remain untouched until the sweet course.'
+
+      },
+
+      'dinner-knife': {
+
+        tag: 'Cutlery: Right Progression',
+
+        title: 'Dinner Knife & Soup Spoon',
+
+        desc: 'Knives are placed to the right with cutting edge facing inward toward the charger. The soup spoon sits on the extreme outside right.',
+
+        rule: 'The knife cutting edge must always face inward towards your plate—facing outward was historically seen as an aggressive gesture.'
+
+      },
+
+      'water-water glass': {
+
+        tag: 'BMW: Right Anchor',
+
+        title: 'Water Goblet (BMW: "W")',
+
+        desc: 'Positioned directly above the dinner knife on the right. Usually the largest glass on the table, refilled regularly by staff.',
+
+        rule: 'Dab your lips with your cloth napkin before taking a sip to avoid leaving visible food traces on the glass rim.'
+
+      },
+
+      'wine-glasses': {
+
+        tag: 'Stemware Cluster',
+
+        title: 'Red & White Wine Stemware',
+
+        desc: 'Clustered to the right of the water water glass. The larger round bowl is for full-bodied reds; the narrower bowl is for chilled whites.',
+
+        rule: 'Always hold wine glasses by the stem, never the bowl. Holding the bowl warms the wine and leaves fingerprints.'
+
+      }
+
+    };
+
+
+
+    function inspectElement(id) {
+
+      const data = tableElements[id];
+
+      if (!data) return;
+
+
+
+      const tagEl = document.getElementById('inspTag');
+
+      if (tagEl) tagEl.textContent = data.tag;
+
+      const titleEl = document.getElementById('inspTitle');
+
+      if (titleEl) titleEl.textContent = data.title;
+
+      const descEl = document.getElementById('inspDesc');
+
+      if (descEl) descEl.textContent = data.desc;
+
+      const ruleEl = document.getElementById('inspRule');
+
+      if (ruleEl) ruleEl.textContent = data.rule;
+
+
+
+      // Update button styles: shaded active border
+
+      document.querySelectorAll('.table-elem-btn').forEach(btn => {
+
+        if (btn.getAttribute('data-pin') === id) {
+
+          btn.className = "table-elem-btn px-4 py-2 rounded-xl bg-amber-100/90 border-2 border-amber-500 text-sm font-extrabold text-amber-950 shadow-md transition-all scale-[1.03]";
+
+        } else {
+
+          btn.className = "table-elem-btn px-4 py-2 rounded-xl bg-white border-2 border-slate-200 hover:border-amber-400 text-sm font-bold text-slate-800 shadow-sm transition-all";
+
+        }
+
+      });
+
+
+
+      // Update pins on photo: only the active pin bounces
+
+      document.querySelectorAll('.table-pin').forEach(pin => {
+
+        const pinCore = pin.querySelector('.relative');
+
+        if (pin.getAttribute('data-pin') === id) {
+
+          pin.classList.add('active');
+
+          if (pinCore) pinCore.classList.add('animate-bounce');
+
+        } else {
+
+          pin.classList.remove('active');
+
+          if (pinCore) pinCore.classList.remove('animate-bounce');
+
+        }
+
+      });
+
+    }
+
+
+
+    /* ==========================================================================
+
+       H. THE DEALMAKER'S TABLE: LIVE BUSINESS MEAL SIMULATOR ENGINE
+
+       ========================================================================== */
+
+    const simStages = [
+
+      {
+
+        act: "Act 1: Seating & The Smartphone Dilemma",
+
+        mood: "OBSERVANT / NEUTRAL",
+
+        dialogue: "\"Good evening. Thank you for inviting me to dinner. Our technical committee loves your software architecture, but this $2.4M contract requires total trust. Shall we take our seats?\"",
+
+        prompt: "Where does your smartphone go, and when do you place your napkin on your lap?",
+
+        options: [
+
+          {
+
+            text: "Place your smartphone face-down on the right side of your bread plate, and unfold your napkin immediately onto your lap.",
+
+            trustDelta: -20,
+
+            probDelta: -15,
+
+            reactionMood: "UNIMPRESSED",
+
+            feedback: "VIOLATION (Carreño & Executive Standard): Zero phones on the table linen. Placing a phone on the table—even face-down—signals that external callers take priority over the client sitting before you.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "Keep your smartphone silenced inside your suit jacket or bag. Unfold your linen napkin and place it smoothly on your lap as soon as you sit down.",
+
+            trustDelta: +20,
+
+            probDelta: +15,
+
+            reactionMood: "IMPRESSED",
+
+            feedback: "PERFECT EXECUTION: The tabletop remains 100% clean of gadgets, and the napkin is deployed immediately upon sitting down. Victoria observes discipline.",
+
+            isBest: true
+
+          },
+
+          {
+
+            text: "Leave the napkin on the table until Victoria takes hers, and place your phone on the chair beside your leg.",
+
+            trustDelta: -5,
+
+            probDelta: -5,
+
+            reactionMood: "SKEPTICAL",
+
+            feedback: "MEDIOCRE: You don't need to wait for the host to place your napkin on your lap; that is done promptly upon seating. Phone on chair is a drop hazard.",
+
+            isBest: false
+
+          }
+
+        ]
+
+      },
+
+      {
+
+        act: "Act 2: The Beverage & Scotch Pressure",
+
+        mood: "SKEPTICAL",
+
+        dialogue: "\"I'm celebrating our quarterly earnings, so I'm ordering a 18-year Single Malt Scotch. You must join me! The server is here—what are you having?\"",
+
+        prompt: "You choose not to drink alcohol tonight because you need peak cognitive acuity to negotiate the $2.4M contract. How do you respond?",
+
+        options: [
+
+          {
+
+            text: "\"I never drink alcohol during business hours—it impairs judgment and destroys executive focus.\"",
+
+            trustDelta: -25,
+
+            probDelta: -20,
+
+            reactionMood: "ANNOYED",
+
+            feedback: "CRITICAL BLUNDER: Lecturing your client makes them feel defensive and self-conscious about their own Scotch order. Rapport drops instantly.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "\"I'll take a double Scotch too! Whatever you're having!\" (Even though you don't drink).",
+
+            trustDelta: -15,
+
+            probDelta: -10,
+
+            reactionMood: "SUSPICIOUS",
+
+            feedback: "TACTICAL RISK: Ordering alcohol purely from peer pressure risks slurred words, cognitive fatigue, or leaving an expensive glass untouched.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "\"Congratulations on the record quarter! Please enjoy that Single Malt—I'll have sparkling water with fresh lime tonight, and I'll raise a glass with you!\"",
+
+            trustDelta: +20,
+
+            probDelta: +20,
+
+            reactionMood: "RESPECTFUL",
+
+            feedback: "MASTER PROTOCOL: Warmly celebrates the client, orders a sophisticated alcohol-free substitute without an apology, and joins the toast.",
+
+            isBest: true
+
+          }
+
+        ]
+
+      },
+
+      {
+
+        act: "Act 3: The Entrée Order Selection",
+
+        mood: "EVALUATING",
+
+        dialogue: "\"The menu looks exquisite. I'm torn between the whole Maine lobster and the Chilean sea bass. What caught your eye?\"",
+
+        prompt: "You will be speaking 60% of the time explaining technical system integration. Which entrée do you order?",
+
+        options: [
+
+          {
+
+            text: "Spaghetti Bolognese with extra sauce, because it is your favorite pasta.",
+
+            trustDelta: -25,
+
+            probDelta: -25,
+
+            reactionMood: "ALARMED",
+
+            feedback: "CATASTROPHIC ORDER: Long noodles flick tomato sauce onto shirts, ties, and client notes. Spaghetti is on every Fortune 500 'do-not-order' list.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "Center-cut Filet Mignon or Pan-Seared Salmon Fillet with roasted asparagus.",
+
+            trustDelta: +20,
+
+            probDelta: +15,
+
+            reactionMood: "PLEASED",
+
+            feedback: "EXECUTIVE SELECTION: Boneless, clean and easy to eat, tender dishes that cut smoothly with a single fork/knife motion, leaving conversation effortless.",
+
+            isBest: true
+
+          },
+
+          {
+
+            text: "BBQ bone-in baby back ribs with seasoned fries.",
+
+            trustDelta: -30,
+
+            probDelta: -30,
+
+            reactionMood: "DISAPPOINTED",
+
+            feedback: "UNFORGIVABLE: Finger foods grease your hands, preventing handshakes, pen use, and clean napkin use.",
+
+            isBest: false
+
+          }
+
+        ]
+
+      },
+
+      {
+
+        act: "Act 4: The Dropped Cutlery Incident",
+
+        mood: "TESTING",
+
+        dialogue: "\"While I was reviewing your SLA commitments—*CLATTER!*—oh, your dinner fork just slipped off the table and landed right between our feet on the floor.\"",
+
+        prompt: "The metallic crash echoes across the room. How do you recover executive posture?",
+
+        options: [
+
+          {
+
+            text: "Immediately dive under the table cloth to retrieve the fork, wipe it on your napkin, and continue eating.",
+
+            trustDelta: -25,
+
+            probDelta: -20,
+
+            reactionMood: "UNCOMFORTABLE",
+
+            feedback: "CRITICAL FAILURE: Diving under the table knocks glasses, breaks eye contact, and wiping dirty floor cutlery with a cloth napkin is unhygienic.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "Leave the fork resting untouched on the floor. Maintain upright posture, make calm eye contact with your server, and quietly request a fresh fork.",
+
+            trustDelta: +20,
+
+            probDelta: +15,
+
+            reactionMood: "IMPRESSED",
+
+            feedback: "MASTER PROTOCOL: Let the restaurant staff manage floor items. You keep 100% of your focus on Victoria Sterling and the conversation.",
+
+            isBest: true
+
+          },
+
+          {
+
+            text: "Apologize repeatedly for five minutes, visibly embarrassed by the clumsiness.",
+
+            trustDelta: -10,
+
+            probDelta: -10,
+
+            reactionMood: "TIRED",
+
+            feedback: "OVER-APOLOGIZING: Drawing prolonged attention to minor accidents shows nervous insecurity under pressure.",
+
+            isBest: false
+
+          }
+
+        ]
+
+      },
+
+      {
+
+        act: "Act 5: The Bill Settlement Showdown",
+
+        mood: "ASSESSING",
+
+        dialogue: "\"This dinner was delightful. The waiter just set the leather billfold on the table... Wait, allow me!\" (Victoria reaches into her purse and produces her black corporate credit card).",
+
+        prompt: "You invited Victoria as the host to close this $2.4M engineering partnership. How do you handle the check?",
+
+        options: [
+
+          {
+
+            text: "Lunge forward, grab the leather folder out of her hand, and push her credit card back into her purse.",
+
+            trustDelta: -20,
+
+            probDelta: -20,
+
+            reactionMood: "OFFENDED",
+
+            feedback: "UNDIGNIFIED: Physical tug-of-war over bills is awkward, aggressive, and deeply unprofessional in business dining.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "\"Thank you so much! Since company travel budgets are tight, I really appreciate you paying for both of us!\"",
+
+            trustDelta: -30,
+
+            probDelta: -35,
+
+            reactionMood: "DISMISSIVE",
+
+            feedback: "DEAL KILLER: If you invited the client, you MUST cover the meal. Letting a prospect pay your dinner signals financial weakness or stinginess.",
+
+            isBest: false
+
+          },
+
+          {
+
+            text: "Smile with poise: \"Victoria, it was my absolute privilege to host you today. I gave my card to the maître d' before we sat down—the dinner is already taken care of. You can host our next dinner to celebrate the contract launch!\"",
+
+            trustDelta: +25,
+
+            probDelta: +25,
+
+            reactionMood: "DELIGHTED",
+
+            feedback: "LEGENDARY DEALMAKER MOVE: Pre-settling with the maître d' completely eliminates the payment awkwardness. The deal is effectively won!",
+
+            isBest: true
+
+          }
+
+        ]
+
+      }
+
+    ];
+
+
+
+    let currentSimStep = 0;
+
+    let simTrust = 60;
+
+    let simProb = 50;
+
+
+
+    
+
+    let simStageTemplateHTML = null;
+
+
+
+    function renderSimStage() {
+
+      // Save initial stage container HTML on first call
+
+      if (!simStageTemplateHTML) {
+
+        const stageWrap = document.getElementById('simStageContainer');
+
+        if (stageWrap) simStageTemplateHTML = stageWrap.innerHTML;
+
+      }
+
+
+
+      const stage = simStages[currentSimStep];
+
+      if (!stage) {
+
+        showFinalSimResults();
+
+        return;
+
+      }
+
+
+
+      const actEl = document.getElementById('simActTitle');
+
+      if (actEl) actEl.textContent = stage.act;
+
+      const stepEl = document.getElementById('simStepCounter');
+
+      if (stepEl) stepEl.textContent = `Stage ${currentSimStep + 1} of ${simStages.length}`;
+
+      const dialEl = document.getElementById('simDialogueText');
+
+      if (dialEl) dialEl.textContent = stage.dialogue;
+
+      const promptEl = document.getElementById('simPromptHeading');
+
+      if (promptEl) promptEl.innerHTML = `<i class="bi bi-question-circle-fill text-amber-600"></i> ${stage.prompt}`;
+
+      const moodEl = document.getElementById('simMoodBadge');
+
+      if (moodEl) moodEl.textContent = stage.mood;
+
+
+
+      // Render options
+
+      const container = document.getElementById('simOptionsContainer');
+
+      if (container) {
+
+        container.innerHTML = '';
+
+        stage.options.forEach((opt, idx) => {
+
+          const btn = document.createElement('button');
+
+          btn.type = 'button';
+
+          btn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl bg-[#faf8f5] hover:bg-amber-50/80 border-2 border-slate-200 hover:border-amber-400 text-slate-800 text-xs sm:text-sm font-medium transition-all duration-200 flex items-start gap-3 group shadow-xs";
+
+          btn.innerHTML = `
+
+            <span class="w-8 h-8 rounded-xl bg-white border-2 border-slate-300 group-hover:border-amber-500 text-slate-700 font-mono font-bold text-sm flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm transition-colors">
+
+              ${['A', 'B', 'C'][idx]}
+
+            </span>
+
+            <span class="flex-1 leading-relaxed">${opt.text}</span>
+
+          `;
+
+          btn.onclick = () => selectSimOption(opt);
+
+          container.appendChild(btn);
+
+        });
+
+      }
+
+
+
+      const nextBtn = document.getElementById('simNextBtn');
+
+      if (nextBtn) nextBtn.disabled = true;
+
+      const fb = document.getElementById('simFeedbackArea');
+
+      if (fb) fb.classList.add('hidden');
+
+    }
+
+
+
+    function resetSimulation() {
+
+      currentSimStep = 0;
+
+      simTrust = 60;
+
+      simProb = 50;
+
+      const stageWrap = document.getElementById('simStageContainer');
+
+      if (stageWrap && simStageTemplateHTML) {
+
+        stageWrap.innerHTML = simStageTemplateHTML;
+
+      }
+
+      const trustVal = document.getElementById('simTrustVal');
+
+      if (trustVal) trustVal.textContent = '60%';
+
+      const trustBar = document.getElementById('simTrustBar');
+
+      if (trustBar) trustBar.style.width = '60%';
+
+      const probVal = document.getElementById('simProbVal');
+
+      if (probVal) probVal.textContent = '50%';
+
+      const probBar = document.getElementById('simProbBar');
+
+      if (probBar) probBar.style.width = '50%';
+
+      const rankBadge = document.getElementById('simRankBadge');
+
+      if (rankBadge) rankBadge.textContent = 'Evaluating...';
+
+      renderSimStage();
+
+    }
+
+
+
+    
+
+    function selectSimOption(opt) {
+
+      simTrust = Math.max(0, Math.min(100, simTrust + opt.trustDelta));
+
+      simProb = Math.max(0, Math.min(100, simProb + opt.probDelta));
+
+
+
+      const trustVal = document.getElementById('simTrustVal');
+
+      if (trustVal) trustVal.textContent = simTrust + '%';
+
+      const trustBar = document.getElementById('simTrustBar');
+
+      if (trustBar) trustBar.style.width = simTrust + '%';
+
+
+
+      const probVal = document.getElementById('simProbVal');
+
+      if (probVal) probVal.textContent = simProb + '%';
+
+      const probBar = document.getElementById('simProbBar');
+
+      if (probBar) probBar.style.width = simProb + '%';
+
+
+
+      const moodEl = document.getElementById('simMoodBadge');
+
+      if (moodEl) moodEl.textContent = opt.reactionMood;
+
+
+
+      const rankBadge = document.getElementById('simRankBadge');
+
+      if (rankBadge) {
+
+        if (simTrust >= 80) {
+
+          rankBadge.textContent = 'Master Dealmaker 🏆';
+
+          rankBadge.className = 'px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold font-mono bg-emerald-100 text-emerald-900 border border-emerald-300';
+
+        } else if (simTrust >= 60) {
+
+          rankBadge.textContent = 'Senior Partner';
+
+          rankBadge.className = 'px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold font-mono bg-blue-100 text-blue-900 border border-blue-300';
+
+        } else if (simTrust >= 40) {
+
+          rankBadge.textContent = 'Rising Associate';
+
+          rankBadge.className = 'px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold font-mono bg-amber-100 text-amber-900 border border-amber-300';
+
+        } else {
+
+          rankBadge.textContent = 'At Risk ⚠️';
+
+          rankBadge.className = 'px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold font-mono bg-rose-100 text-rose-900 border border-rose-300';
+
+        }
+
+      }
+
+
+
+      // Disable option buttons
+
+      const container = document.getElementById('simOptionsContainer');
+
+      if (container) {
+
+        container.querySelectorAll('button').forEach(btn => {
+
+          btn.disabled = true;
+
+          btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+        });
+
+      }
+
+
+
+      // Show Feedback
+
+      const fb = document.getElementById('simFeedbackArea');
+
+      if (fb) {
+
+        fb.classList.remove('hidden');
+
+        if (opt.isBest) {
+
+          fb.className = "mt-6 rounded-2xl p-6 border-2 border-emerald-400 bg-emerald-50 text-emerald-950 shadow-md transition-all duration-300";
+
+          fb.innerHTML = `
+
+            <div class="flex items-start gap-3">
+
+              <i class="bi bi-check-circle-fill text-emerald-600 text-2xl mt-0.5 flex-shrink-0"></i>
+
+              <div>
+
+                <h6 class="font-bold text-base sm:text-lg text-emerald-900 mb-1">Excellent Tactical Etiquette</h6>
+
+                <p class="text-sm sm:text-base leading-relaxed text-emerald-900">${opt.feedback}</p>
+
+                <div class="mt-2.5 flex items-center gap-4 text-xs font-mono font-bold text-emerald-700">
+
+                  <span>Trust: +${opt.trustDelta}%</span>
+
+                  <span>Deal Prob: +${opt.probDelta}%</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          `;
+
+        } else {
+
+          fb.className = "mt-6 rounded-2xl p-6 border-2 border-rose-300 bg-rose-50 text-rose-950 shadow-md transition-all duration-300";
+
+          fb.innerHTML = `
+
+            <div class="flex items-start gap-3">
+
+              <i class="bi bi-exclamation-triangle-fill text-rose-600 text-2xl mt-0.5 flex-shrink-0"></i>
+
+              <div>
+
+                <h6 class="font-bold text-base sm:text-lg text-rose-900 mb-1">Etiquette Breach</h6>
+
+                <p class="text-sm sm:text-base leading-relaxed text-rose-900">${opt.feedback}</p>
+
+                <div class="mt-2.5 flex items-center gap-4 text-xs font-mono font-bold text-rose-700">
+
+                  <span>Trust: ${opt.trustDelta}%</span>
+
+                  <span>Deal Prob: ${opt.probDelta}%</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+
+      }
+
+
+
+      const nextBtn = document.getElementById('simNextBtn');
+
+      if (nextBtn) {
+
+        nextBtn.disabled = false;
+
+        if (currentSimStep === simStages.length - 1) {
+
+          nextBtn.innerHTML = 'View Deal Outcome <i class="bi bi-trophy-fill ml-1.5"></i>';
+
+        } else {
+
+          nextBtn.innerHTML = 'Next Act <i class="bi bi-arrow-right ml-1.5"></i>';
+
+        }
+
+      }
+
+    }
+
+
+
+    function advanceSimulation() {
+
+      currentSimStep++;
+
+      renderSimStage();
+
+    }
+
+
+
+    function showFinalSimResults() {
+
+      const container = document.getElementById('simStageContainer');
+
+      const isVictory = simTrust >= 75 && simProb >= 70;
+
+
+
+      if (isVictory) {
+
+        if (typeof confetti === 'function') {
+
+          confetti({
+
+            particleCount: 90,
+
+            spread: 75,
+
+            origin: { y: 0.6 }
+
+          });
+
+        }
+
+      }
+
+
+
+      container.innerHTML = `
+
+        <div class="text-center py-8 px-4">
+
+          <div class="w-24 h-24 rounded-full mx-auto mb-5 flex items-center justify-center text-5xl shadow-xl ${isVictory ? 'bg-emerald-100 text-emerald-700 border-2 border-emerald-400' : 'bg-rose-100 text-rose-700 border-2 border-rose-400'}">
+
+            <i class="${isVictory ? 'bi bi-award-fill' : 'bi bi-shield-x'}"></i>
+
+          </div>
+
+
+
+          <h3 class="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 mb-3">
+
+            ${isVictory ? 'CONTRACT SEALED: $2,400,000 APPROVED!' : 'NEGOTIATION FAILED: CONTRACT POSTPONED'}
+
+          </h3>
+
+
+
+          <p class="text-slate-700 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+
+            ${isVictory
+
+              ? 'Victoria Sterling was very impressed by your poise, classical Carreño manners, and seamless hospitality. The commercial partnership contract has been delivered to your CEO.'
+
+              : 'Protocol errors during the meal damaged executive confidence. Victoria chose to evaluate competitive vendors who demonstrated greater composure under pressure.'
+
+            }
+
+          </p>
+
+
+
+          <div class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-8 text-left bg-[#faf8f5] border-2 border-amber-200 p-5 rounded-2xl shadow-sm">
+
+            <div>
+
+              <span class="text-xs sm:text-sm text-slate-600 font-mono uppercase font-bold">Final Trust Level:</span>
+
+              <div class="text-3xl font-extrabold text-amber-800 font-mono mt-1">${simTrust}%</div>
+
+            </div>
+
+            <div>
+
+              <span class="text-xs sm:text-sm text-slate-600 font-mono uppercase font-bold">Closing Probability:</span>
+
+              <div class="text-3xl font-extrabold text-emerald-800 font-mono mt-1">${simProb}%</div>
+
+            </div>
+
+          </div>
+
+
+
+          <button onclick="resetSimulation()" class="btn-gold px-9 py-4 rounded-xl text-sm font-bold uppercase tracking-wider">
+
+            <i class="bi bi-arrow-counterclockwise mr-2 text-base"></i> Re-Simulate Business Lunch
+
+          </button>
+
+        </div>
+
+      `;
+
+    }
+
+
+
+
+
+    /* ==========================================================================
+
+       GSAP SCROLLTRIGGER & HERO ANIMATION SUITE (CARTIER / EDITORIAL MOTION)
+
+       ========================================================================== */
+
+    function initHeroAnimations() {
+
+      if (typeof gsap === 'undefined') return;
+
+      const heroTl = gsap.timeline({
+
+        scrollTrigger: {
+
+          trigger: '#overview',
+
+          start: 'top 80%',
+
+          end: 'bottom 15%',
+
+          toggleActions: 'play reverse play reverse'
+
+        },
+
+        defaults: { ease: 'power3.out' }
+
+      });
+
+      heroTl.fromTo('#overview .inline-flex', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75 })
+
+            .fromTo('#overview h1', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.95 }, '-=0.45')
+
+            .fromTo('#overview p', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.65')
+
+            .fromTo('#overview .flex.flex-wrap', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75 }, '-=0.55')
+
+            .fromTo('#overview .grid-cols-3 > div', { y: 30, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 0.75, ease: 'back.out(1.4)' }, '-=0.55')
+
+            .fromTo('#overview .lg\\:col-span-5', { scale: 0.92, y: 35, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 1.05 }, '-=0.85');
+
+    }
+
+
+
+    function initScrollAnimations() {
+
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+
+
+      // A. Section Titles & Subtitles (Editorial Cascade)
+
+      document.querySelectorAll('section').forEach(sec => {
+
+        const header = sec.querySelector('.text-center');
+
+        if (header) {
+
+          const elements = header.querySelectorAll('span, h2, h3, p');
+
+          if (elements.length) {
+
+            gsap.fromTo(elements,
+
+              { y: 32, opacity: 0 },
+
+              {
+
+                y: 0,
+
+                opacity: 1,
+
+                stagger: 0.08,
+
+                duration: 0.75,
+
+                ease: 'power3.out',
+
+                scrollTrigger: {
+
+                  trigger: header,
+
+                  start: 'top 90%',
+
+                  toggleActions: 'play reverse play reverse'
+
+                }
+
+              }
+
+            );
+
+          }
+
+        }
+
+      });
+
+
+
+      // B. 3-Phase Cards Cascade (Foundations)
+
+      const phaseCards = document.querySelectorAll('#foundations .grid-cols-1.lg\\:grid-cols-3 > div');
+
+      if (phaseCards.length) {
+
+        gsap.fromTo(phaseCards,
+
+          { y: 40, opacity: 0, scale: 0.96 },
+
+          {
+
+            y: 0,
+
+            opacity: 1,
+
+            scale: 1,
+
+            stagger: 0.12,
+
+            duration: 0.85,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: '#foundations .grid-cols-1.lg\\:grid-cols-3',
+
+              start: 'top 88%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+
+
+      // C. Culinary Matrix Cards Cascade
+
+      const culCards = document.querySelectorAll('#culinaryCardsGrid .culinary-card');
+
+      if (culCards.length) {
+
+        gsap.fromTo(culCards,
+
+          { y: 30, opacity: 0, scale: 0.97 },
+
+          {
+
+            y: 0,
+
+            opacity: 1,
+
+            scale: 1,
+
+            stagger: 0.05,
+
+            duration: 0.65,
+
+            ease: 'power2.out',
+
+            scrollTrigger: {
+
+              trigger: '#culinaryCardsGrid',
+
+              start: 'top 92%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+
+
+      // D. Table Anatomy: Place setting graphic & Inspector panel
+
+      const tableGraphic = document.querySelector('#table-anatomy .lg\\:col-span-8');
+
+      const tableInspector = document.querySelector('#table-anatomy .lg\\:col-span-4');
+
+      if (tableGraphic) {
+
+        gsap.fromTo(tableGraphic,
+
+          { scale: 0.96, y: 28, opacity: 0 },
+
+          {
+
+            scale: 1,
+
+            y: 0,
+
+            opacity: 1,
+
+            duration: 0.85,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: tableGraphic,
+
+              start: 'top 88%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+      if (tableInspector) {
+
+        gsap.fromTo(tableInspector,
+
+          { x: 30, opacity: 0 },
+
+          {
+
+            x: 0,
+
+            opacity: 1,
+
+            duration: 0.85,
+
+            delay: 0.08,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: tableInspector,
+
+              start: 'top 88%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+
+
+      // E. Carreño Code: 1853 vs 2026 cards & 3 Pillars
+
+      const carrenoSec = document.querySelector('#carreno-rules');
+
+      if (carrenoSec) {
+
+        const eraCards = carrenoSec.querySelectorAll('.grid > div');
+
+        if (eraCards.length) {
+
+          gsap.fromTo(eraCards,
+
+            { y: 35, opacity: 0 },
+
+            {
+
+              y: 0,
+
+              opacity: 1,
+
+              stagger: 0.1,
+
+              duration: 0.8,
+
+              ease: 'power3.out',
+
+              scrollTrigger: {
+
+                trigger: carrenoSec,
+
+                start: 'top 85%',
+
+                toggleActions: 'play reverse play reverse'
+
+              }
+
+            }
+
+          );
+
+        }
+
+      }
+
+
+
+      // F. Crisis Damage Control (6 3D Flip Cards)
+
+      const flipCards = document.querySelectorAll('#awkward-scenarios .flip-card');
+
+      if (flipCards.length) {
+
+        gsap.fromTo(flipCards,
+
+          { y: 35, opacity: 0, scale: 0.97 },
+
+          {
+
+            y: 0,
+
+            opacity: 1,
+
+            scale: 1,
+
+            stagger: 0.08,
+
+            duration: 0.75,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: '#awkward-scenarios',
+
+              start: 'top 88%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+
+
+      // G. The Dealmaker's Table: Live Simulation Console
+
+      const simConsole = document.querySelector('#simulator .rounded-3xl');
+
+      if (simConsole) {
+
+        gsap.fromTo(simConsole,
+
+          { y: 35, scale: 0.98, opacity: 0 },
+
+          {
+
+            y: 0,
+
+            scale: 1,
+
+            opacity: 1,
+
+            duration: 0.85,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: '#simulator',
+
+              start: 'top 85%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+
+
+      // H. Quiz & Survey Container
+
+      const surveyCard = document.querySelector('#survey .survey-card, #survey .rounded-3xl, #survey .rounded-2xl');
+
+      if (surveyCard) {
+
+        gsap.fromTo(surveyCard,
+
+          { y: 30, scale: 0.98, opacity: 0 },
+
+          {
+
+            y: 0,
+
+            scale: 1,
+
+            opacity: 1,
+
+            duration: 0.8,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: '#survey',
+
+              start: 'top 88%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+
+
+      // I. The Executive Vault: 6 Reference Books
+
+      const refCards = document.querySelectorAll('#references .grid > div');
+
+      if (refCards.length) {
+
+        gsap.fromTo(refCards,
+
+          { y: 35, opacity: 0 },
+
+          {
+
+            y: 0,
+
+            opacity: 1,
+
+            stagger: 0.08,
+
+            duration: 0.75,
+
+            ease: 'power3.out',
+
+            scrollTrigger: {
+
+              trigger: '#references .grid',
+
+              start: 'top 90%',
+
+              toggleActions: 'play reverse play reverse'
+
+            }
+
+          }
+
+        );
+
+      }
+
+    }
+
+
+
+    /* ==========================================================================
+
+       3D INTERACTIVE TILT PHYSICS (AGENCE CARTIER / CUBERTO STYLE)
+
+       ========================================================================== */
+
+    function init3dTilt() {
+
+      const tiltCards = document.querySelectorAll('.tilt-card, [data-tilt="true"]');
+
+      tiltCards.forEach(elem => {
+
+        elem.addEventListener('mousemove', (e) => {
+
+          const rect = elem.getBoundingClientRect();
+
+          const x = e.clientX - rect.left;
+
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+
+          const centerY = rect.height / 2;
+
+
+
+          const deltaX = (x - centerX) / centerX;
+
+          const deltaY = (y - centerY) / centerY;
+
+
+
+          const rotateX = (-deltaY * 5).toFixed(2);
+
+          const rotateY = (deltaX * 5).toFixed(2);
+
+
+
+          elem.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        });
+
+
+
+        elem.addEventListener('mouseleave', () => {
+
+          elem.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+
+        });
+
+      });
+
+    }
+
+
+
+    // Initialize Simulator & GSAP Animation Suite on Load
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      renderSimStage();
+
+      initHeroAnimations();
+
+      initScrollAnimations();
+
+      init3dTilt();
+
+    });
+
+  </script>
+
+
+
+  <script>
+    /* ==========================================================================
+       INTERACTIVE CARREÑO & PROFESSIONAL DINING SURVEY LOGIC (ANIMATED & DECORATED)
+       ========================================================================== */
+    const surveyQuestions = [
+      "1. How much did you learn about Carreño's classical etiquette rules and their modern business relevance?",
+      "2. How confident do you feel navigating a formal 5-course table layout with the BMW rule (Bread, Meal, Water)?",
+      "3. How aware are you of keeping phones, keys, and personal items completely off the dining table?",
+      "4. How confident are you interacting with restaurant waitstaff using polite, discreet signals?",
+      "5. How well prepared are you to host a business meal and handle the bill discreetly without awkwardness?",
+      "6. How confident are you handling unexpected accidents (spills or dropped utensils) with calm poise?",
+      "7. How capable do you feel timing and pacing the sales conversation naturally across meal courses?",
+      "8. Overall, how significantly did this module prepare you for executive business dining?"
+    ];
+
+    const ratingMeta = [
+      { val: 1, label: "Very Low", stars: "★", desc: "Minimal confidence / Needs review" },
+      { val: 2, label: "Low", stars: "★★", desc: "Basic understanding / Low confidence" },
+      { val: 3, label: "Moderate", stars: "★★★", desc: "Acceptable grasp / Developing poise" },
+      { val: 4, label: "High", stars: "★★★★", desc: "Strong comprehension / Well prepared" },
+      { val: 5, label: "Very High", stars: "★★★★★", desc: "Full mastery / Maximum confidence" }
+    ];
+
+    let currentSurveyIndex = 0;
+    let userSurveyAnswers = new Array(surveyQuestions.length).fill(null);
+
+    function renderSurveyQuestion(animate = false) {
+      const titleEl = document.getElementById('surveyQuestionTitle');
+      const counterEl = document.getElementById('surveyCounterText');
+      const progEl = document.getElementById('surveyProgressBar');
+      const scaleGroup = document.getElementById('surveyScaleGroup');
+      const feedbackEl = document.getElementById('surveyFeedbackBadge');
+      const prevBtn = document.getElementById('surveyPrevBtn');
+      const nextBtn = document.getElementById('surveyNextBtn');
+
+      if (!titleEl || !scaleGroup) return;
+
+      titleEl.textContent = surveyQuestions[currentSurveyIndex];
+      if (counterEl) {
+        counterEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> ${currentSurveyIndex + 1} of ${surveyQuestions.length}`;
+      }
+      if (progEl) {
+        progEl.style.width = `${((currentSurveyIndex + 1) / surveyQuestions.length) * 100}%`;
+      }
+
+      if (prevBtn) prevBtn.disabled = (currentSurveyIndex === 0);
+
+      const currentAnswer = userSurveyAnswers[currentSurveyIndex];
+      if (nextBtn) {
+        nextBtn.disabled = (currentAnswer === null);
+        nextBtn.innerHTML = (currentSurveyIndex === surveyQuestions.length - 1)
+          ? 'Finish <i class="bi bi-award-fill ml-1 text-slate-900"></i>'
+          : 'Next <i class="bi bi-arrow-right ml-1"></i>';
+      }
+
+      // Render 5 stylized buttons with micro-labels and subtle stars
+      scaleGroup.innerHTML = '';
+      ratingMeta.forEach(meta => {
+        const isSelected = (currentAnswer === meta.val);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => selectSurveyRating(meta.val);
+
+        let classes = "h-14 sm:h-16 flex flex-col items-center justify-center rounded-2xl border-2 transition-all duration-200 cursor-pointer text-center ";
+        if (isSelected) {
+          classes += "bg-gradient-to-b from-amber-400 to-amber-500 border-amber-500 text-slate-950 font-black shadow-md ring-4 ring-amber-300/40 scale-[1.04]";
+        } else {
+          classes += "bg-white/90 border-slate-200 text-slate-700 hover:border-amber-400 hover:bg-amber-50/50 hover:scale-[1.02] shadow-xs";
+        }
+        btn.className = classes;
+        btn.innerHTML = `
+          <span class="text-lg sm:text-xl font-black font-mono leading-none mb-0.5 ${isSelected ? 'text-slate-950' : 'text-slate-800'}">${meta.val}</span>
+          <span class="text-[9px] sm:text-[10px] font-bold ${isSelected ? 'text-slate-900' : 'text-slate-500'} leading-none">${meta.label}</span>
+          <span class="text-[8px] text-amber-500 mt-1 opacity-90">${meta.stars}</span>
+        `;
+        scaleGroup.appendChild(btn);
+      });
+
+      // Update Feedback Pill
+      if (feedbackEl) {
+        if (currentAnswer !== null) {
+          const item = ratingMeta.find(m => m.val === currentAnswer);
+          feedbackEl.classList.remove('hidden');
+          feedbackEl.innerHTML = `
+            <div>
+              <span class="font-bold text-amber-900"><i class="bi bi-check2-circle text-emerald-600 mr-1.5 align-middle"></i>Rating <strong>${item.val}/5 (${item.label})</strong></span>
+              <span class="text-slate-600 ml-2 hidden sm:inline">— ${item.desc}</span>
+            </div>
+            <span class="font-mono text-[10px] font-bold text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded">Saved</span>
+          `;
+        } else {
+          feedbackEl.classList.add('hidden');
+        }
+      }
+
+      // Smooth question transition animation using GSAP
+      if (animate && window.gsap) {
+        gsap.fromTo('#surveyQuestionContent', 
+          { opacity: 0, y: 10 }, 
+          { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
+        );
+      }
+    }
+
+    function selectSurveyRating(val) {
+      userSurveyAnswers[currentSurveyIndex] = val;
+      renderSurveyQuestion(false);
+    }
+
+    function prevSurveyQuestion() {
+      if (currentSurveyIndex > 0) {
+        currentSurveyIndex--;
+        renderSurveyQuestion(true);
+      }
+    }
+
+    function nextSurveyQuestion() {
+      if (currentSurveyIndex < surveyQuestions.length - 1) {
+        currentSurveyIndex++;
+        renderSurveyQuestion(true);
+      } else {
+        finishSurvey();
+      }
+    }
+
+    function finishSurvey() {
+      const sum = userSurveyAnswers.reduce((acc, v) => acc + (v || 0), 0);
+      const avg = (sum / surveyQuestions.length).toFixed(1);
+
+      const card = document.getElementById('surveyQuestionCard');
+      const finishScreen = document.getElementById('surveyFinishScreen');
+      const avgDisplay = document.getElementById('surveyFinalAvgDisplay');
+      const badgeDisplay = document.getElementById('surveyReadinessBadge');
+
+      if (card) card.classList.add('hidden');
+      if (finishScreen) finishScreen.classList.remove('hidden');
+
+      if (avgDisplay) avgDisplay.textContent = `${avg} / 5.0`;
+      if (badgeDisplay) {
+        if (avg >= 4.0) {
+          badgeDisplay.textContent = "Excellent! You demonstrate executive-level dining confidence & Carreño poise.";
+        } else if (avg >= 3.0) {
+          badgeDisplay.textContent = "Good foundation! You are well on your way to executive dining mastery.";
+        } else {
+          badgeDisplay.textContent = "Review the module and cheat-sheet to strengthen your business table etiquette.";
+        }
+      }
+
+      // GSAP Finish Screen Pop Animation
+      if (window.gsap) {
+        gsap.fromTo('#surveyFinishScreen',
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.5)' }
+        );
+      }
+    }
+
+    function restartSurvey() {
+      currentSurveyIndex = 0;
+      userSurveyAnswers.fill(null);
+      const card = document.getElementById('surveyQuestionCard');
+      const finishScreen = document.getElementById('surveyFinishScreen');
+      if (card) card.classList.remove('hidden');
+      if (finishScreen) finishScreen.classList.add('hidden');
+      renderSurveyQuestion(true);
+    }
+
+    // Backwards compatibility aliases
+    window.restartQuiz = restartSurvey;
+    window.nextQuizQuestion = nextSurveyQuestion;
+    window.prevQuizQuestion = prevSurveyQuestion;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSurveyQuestion(false);
+    });
+  </script>
+
+
+
+</body>
+
+
+
+</html>
